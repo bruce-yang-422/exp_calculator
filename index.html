@@ -63,8 +63,8 @@
             --success-light: #A8C4A8;     /* 成功淺色 - 淺柔和綠 */
             --warning: #D4A574;           /* 警告色 - 柔和橙 */
             --warning-light: #E8C4A0;     /* 警告淺色 - 淺柔和橙 */
-            --danger: #C48B8B;            /* 危險色 - 柔和紅 */
-            --danger-light: #D4A5A5;       /* 危險淺色 - 淺柔和紅 */
+            --danger: #B71C1C;            /* 危險色 - 深紅 */
+            --danger-light: #D32F2F;       /* 危險淺色 - 中紅 */
             --info: #AEC6CF;              /* 資訊色 - 軟藍 */
             --info-light: #C8D6DB;         /* 資訊淺色 - 淺軟藍 */
             
@@ -78,8 +78,13 @@
             --shadow-light: 0 2px 8px rgba(44, 44, 44, 0.06);
             --shadow-medium: 0 4px 16px rgba(44, 44, 44, 0.08);
             --shadow-heavy: 0 8px 32px rgba(44, 44, 44, 0.12);
-            --shadow-primary: 0 4px 16px rgba(165, 222, 228, 0.15);
-            --shadow-secondary: 0 4px 16px rgba(220, 159, 180, 0.15);
+            --shadow-primary: 0 4px 16px rgba(174, 198, 207, 0.15);
+            --shadow-secondary: 0 4px 16px rgba(234, 227, 210, 0.15);
+            --shadow-danger: 0 4px 16px rgba(183, 28, 28, 0.15);
+            
+            /* 危險色漸層 */
+            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
         }
         
         /* Energetic Bright Theme - Light Mode */
@@ -122,8 +127,8 @@
             --success-light: #A5D6A7;     /* 成功淺色 - 淺綠 */
             --warning: #FFB74D;           /* 警告色 - 橙色 */
             --warning-light: #FFCC80;     /* 警告淺色 - 淺橙 */
-            --danger: #E57373;            /* 危險色 - 柔和紅 */
-            --danger-light: #FFAB91;       /* 危險淺色 - 淺紅 */
+            --danger: #D32F2F;            /* 危險色 - 中紅 */
+            --danger-light: #F44336;       /* 危險淺色 - 亮紅 */
             --info: #64B5F6;              /* 資訊色 - 藍色 */
             --info-light: #90CAF9;         /* 資訊淺色 - 淺藍 */
             
@@ -139,6 +144,11 @@
             --shadow-heavy: 0 8px 32px rgba(44, 44, 44, 0.16);
             --shadow-primary: 0 4px 16px rgba(255, 213, 79, 0.2);
             --shadow-secondary: 0 4px 16px rgba(129, 199, 132, 0.2);
+            --shadow-danger: 0 4px 16px rgba(211, 47, 47, 0.2);
+            
+            /* 危險色漸層 */
+            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
         }
 
         /* Sleek Professional Theme - Dark Mode */
@@ -198,6 +208,11 @@
             --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
             --shadow-primary: 0 4px 16px rgba(92, 107, 192, 0.2);
             --shadow-secondary: 0 4px 16px rgba(144, 164, 174, 0.2);
+            --shadow-danger: 0 4px 16px rgba(239, 83, 80, 0.2);
+            
+            /* 危險色漸層 */
+            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
         }
 
         /* Vibrant Neon Theme - Dark Mode */
@@ -257,6 +272,11 @@
             --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
             --shadow-primary: 0 4px 16px rgba(0, 191, 255, 0.2);
             --shadow-secondary: 0 4px 16px rgba(156, 39, 176, 0.2);
+            --shadow-danger: 0 4px 16px rgba(255, 23, 68, 0.2);
+            
+            /* 危險色漸層 */
+            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
+            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
         }
         
         /* 主題選擇器 - 清單式設計 */
@@ -394,6 +414,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            background: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
             background: var(--gradient-bg-light);
@@ -415,6 +440,19 @@
 
         [data-theme="neon"] body {
             background: var(--gradient-bg-dark);
+        }
+
+        /* HTML 背景色適配 */
+        [data-theme="energetic"] html {
+            background: var(--bg-primary);
+        }
+
+        [data-theme="sleek"] html {
+            background: var(--bg-primary);
+        }
+
+        [data-theme="neon"] html {
+            background: var(--bg-primary);
         }
 
         body::before {
@@ -830,20 +868,34 @@
         .data-management {
             margin-top: 20px;
             padding: 15px;
-            background: linear-gradient(145deg, rgba(26, 31, 58, 0.6) 0%, rgba(45, 27, 105, 0.4) 100%);
+            background: var(--bg-card);
             border-radius: 10px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--border-primary);
             backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-medium);
         }
 
         .data-management h3 {
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-size: 1.1em;
             font-weight: bold;
+            text-shadow: 0 0 15px rgba(174, 198, 207, 0.5);
+        }
+
+        [data-theme="energetic"] .data-management h3 {
+            text-shadow: 0 0 15px rgba(255, 213, 79, 0.7);
+        }
+
+        [data-theme="sleek"] .data-management h3 {
+            text-shadow: 0 0 15px rgba(92, 107, 192, 0.7);
+        }
+
+        [data-theme="neon"] .data-management h3 {
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
         }
 
         .data-buttons {
@@ -865,45 +917,48 @@
         }
 
         .export-btn {
-            background: linear-gradient(45deg, #4169e1, #1e90ff);
-            color: #f4e4bc;
-            border: 1px solid rgba(65, 105, 225, 0.5);
+            background: var(--gradient-primary);
+            color: var(--text-inverse);
+            border: 1px solid var(--primary);
             font-weight: bold;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .export-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(65, 105, 225, 0.4);
-            background: linear-gradient(45deg, #6495ed, #4169e1);
+            box-shadow: var(--shadow-primary);
+            background: var(--gradient-secondary);
+            border-color: var(--secondary);
         }
 
         .import-btn {
-            background: linear-gradient(45deg, #ff8c00, #ff6347);
-            color: #f4e4bc;
-            border: 1px solid rgba(255, 140, 0, 0.5);
+            background: var(--gradient-accent);
+            color: var(--text-inverse);
+            border: 1px solid var(--accent);
             font-weight: bold;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .import-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
-            background: linear-gradient(45deg, #ffa500, #ff8c00);
+            box-shadow: var(--shadow-secondary);
+            background: var(--gradient-secondary);
+            border-color: var(--secondary);
         }
 
         .clear-btn {
-            background: linear-gradient(45deg, #dc143c, #b22222);
-            color: #f4e4bc;
-            border: 1px solid rgba(220, 20, 60, 0.5);
+            background: var(--danger);
+            color: var(--text-inverse);
+            border: 1px solid var(--danger-dark);
             font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .clear-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(220, 20, 60, 0.4);
-            background: linear-gradient(45deg, #ff1493, #dc143c);
+            box-shadow: var(--shadow-danger);
+            background: var(--danger-dark);
+            border-color: var(--danger);
         }
 
         .history-section {
@@ -1287,7 +1342,12 @@
 
         function setTheme(theme) {
             const body = document.body;
+            const html = document.documentElement;
+            
+            // 設置主題屬性
             body.setAttribute('data-theme', theme);
+            html.setAttribute('data-theme', theme);
+            
             localStorage.setItem('theme', theme);
             
             // 更新選中狀態
@@ -1323,7 +1383,12 @@
         // 載入保存的主題
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', savedTheme);
+            const body = document.body;
+            const html = document.documentElement;
+            
+            // 設置主題屬性
+            body.setAttribute('data-theme', savedTheme);
+            html.setAttribute('data-theme', savedTheme);
             
             // 更新選中狀態
             document.querySelectorAll('.theme-option').forEach(option => {
