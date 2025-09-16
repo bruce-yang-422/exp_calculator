@@ -393,7 +393,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" 
             integrity="sha512-r22gChDnGvBylk90+2e/ycr3xr3R9u02r4aK6F2q03Ykk/Q7E2wQ8Qu8vsV8uo1dsT0X/avhL7y4dXJ1Td+fOWA==" 
             crossorigin="anonymous" 
-            referrerpolicy="no-referrer"></script>
+            referrerpolicy="no-referrer"
+            onerror="loadSheetJSFallback()"></script>
+    
+    <!-- SheetJS 備用載入 -->
+    <script>
+        function loadSheetJSFallback() {
+            console.log('主要 SheetJS CDN 載入失敗，嘗試備用 CDN...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js';
+            script.onerror = function() {
+                console.error('所有 SheetJS CDN 都載入失敗');
+                alert('Excel 功能暫時無法使用，請檢查網路連線或稍後再試');
+            };
+            document.head.appendChild(script);
+        }
+    </script>
     <!-- 備用 CDN -->
     <script>
         // 如果主要 CDN 載入失敗，嘗試備用 CDN
@@ -1250,6 +1265,7 @@
                     <button type="button" class="data-btn export-btn" onclick="exportToExcel()">📤 匯出 Excel</button>
                     <button type="button" class="data-btn import-btn" onclick="document.getElementById('fileInput').click()">📥 匯入 Excel</button>
                     <button type="button" class="data-btn clear-btn" onclick="clearAllData()">🗑️ 清除資料</button>
+                    <button type="button" class="data-btn" onclick="testSheetJS()" style="background: var(--gradient-secondary); color: var(--text-inverse);">🔧 測試 Excel 功能</button>
                 </div>
                 <input type="file" id="fileInput" class="file-input" accept=".xlsx,.xls" onchange="importFromExcel(event)">
             </div>
@@ -1413,10 +1429,49 @@
             }
         }
 
+        // 檢查 SheetJS 載入狀態
+        function checkSheetJSStatus() {
+            if (typeof XLSX === 'undefined') {
+                console.warn('SheetJS 尚未載入完成');
+                setTimeout(checkSheetJSStatus, 1000); // 1秒後重試
+            } else {
+                console.log('SheetJS 載入成功，Excel 功能可用');
+            }
+        }
+
+        // 測試 SheetJS 功能
+        function testSheetJS() {
+            if (typeof XLSX === 'undefined') {
+                alert('❌ SheetJS 未載入\n\n可能原因：\n1. 網路連線問題\n2. CDN 服務中斷\n3. 瀏覽器阻擋外部腳本\n\n建議：\n1. 檢查網路連線\n2. 重新整理頁面\n3. 檢查瀏覽器控制台錯誤');
+                console.error('SheetJS 測試失敗：XLSX 未定義');
+                return;
+            }
+
+            try {
+                // 創建簡單的測試工作簿
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.aoa_to_sheet([
+                    ['測試', 'SheetJS 功能'],
+                    ['狀態', '正常'],
+                    ['時間', new Date().toLocaleString()]
+                ]);
+                XLSX.utils.book_append_sheet(wb, ws, '測試');
+                
+                // 嘗試下載測試檔案
+                XLSX.writeFile(wb, 'SheetJS_測試.xlsx');
+                alert('✅ SheetJS 功能正常！\n\n測試檔案已下載，匯出功能應該可以正常使用。');
+                console.log('SheetJS 測試成功');
+            } catch (error) {
+                alert('❌ SheetJS 測試失敗\n\n錯誤：' + error.message + '\n\n請檢查瀏覽器控制台獲取詳細信息');
+                console.error('SheetJS 測試失敗:', error);
+            }
+        }
+
         // 快捷功能初始化
         document.addEventListener('DOMContentLoaded', function() {
             loadTheme();
             loadShortcuts();
+            checkSheetJSStatus();
         });
 
         // 角色名稱快捷功能
@@ -1598,6 +1653,15 @@
 
         // Excel 匯出功能
         function exportToExcel() {
+            // 檢查 SheetJS 是否載入
+            if (typeof XLSX === 'undefined') {
+                alert('Excel 功能載入中，請稍後再試或檢查網路連線');
+                console.error('XLSX 未定義，SheetJS 可能未正確載入');
+                // 嘗試重新載入 SheetJS
+                loadSheetJSFallback();
+                return;
+            }
+            
             const history = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
             const characterShortcuts = JSON.parse(localStorage.getItem('characterShortcuts') || '[]');
             const locationShortcuts = JSON.parse(localStorage.getItem('locationShortcuts') || '[]');
@@ -1607,8 +1671,9 @@
                 return;
             }
             
-            // 創建工作簿
-            const wb = XLSX.utils.book_new();
+            try {
+                // 創建工作簿
+                const wb = XLSX.utils.book_new();
             
             // 計算記錄工作表
             if (history.length > 0) {
@@ -1657,11 +1722,15 @@
                 XLSX.utils.book_append_sheet(wb, ws3, '掛網地點快捷');
             }
             
-            // 下載檔案
-            const fileName = `經驗值計算器資料_${new Date().toISOString().slice(0, 10)}.xlsx`;
-            XLSX.writeFile(wb, fileName);
-            
-            alert('Excel 檔案已成功匯出！');
+                // 下載檔案
+                const fileName = `經驗值計算器資料_${new Date().toISOString().slice(0, 10)}.xlsx`;
+                XLSX.writeFile(wb, fileName);
+                
+                alert('Excel 檔案已成功匯出！');
+            } catch (error) {
+                console.error('匯出 Excel 時發生錯誤:', error);
+                alert('匯出失敗，請檢查瀏覽器控制台或稍後再試');
+            }
         }
 
         // Excel 匯入功能
