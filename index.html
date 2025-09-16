@@ -24,51 +24,51 @@
     <!-- CSS 變數定義 -->
     <style>
         :root {
-            /* Light Mode - 現代優雅風格 */
-            /* 靈感來源：NIPPON COLORS + 現代室內設計 + 自然風 */
+            /* Calm Minimal Theme - Light Mode */
+            /* 基於色彩心理學：平靜、專業、簡約 */
             
-            /* 背景色系 - 溫暖中性調 */
-            --bg-primary: #FEDFE1;        /* 主背景 - 淡粉白（NIPPON） */
-            --bg-secondary: #FFFFFF;      /* 次背景 - 純白 */
+            /* 背景色系 - 純淨簡約 */
+            --bg-primary: #FFFFFF;        /* 主背景 - 純白 */
+            --bg-secondary: #F5F5F5;      /* 次背景 - 淺灰 */
             --bg-card: #FFFFFF;           /* 卡片背景 - 純白 */
             --bg-overlay: rgba(255, 255, 255, 0.95);
-            --bg-hover: #D7C4BB;          /* 懸停背景 - 淺灰褐（NIPPON） */
+            --bg-hover: #F0F0F0;          /* 懸停背景 - 淺灰 */
             
             /* 文字色系 - 深色調 */
-            --text-primary: #2C2C2C;      /* 主文字 - 深灰 */
+            --text-primary: #1A1A1A;      /* 主文字 - 深黑 */
             --text-secondary: #4A4A4A;    /* 次文字 - 中灰 */
             --text-muted: #6B6B6B;        /* 輔助文字 - 淺灰 */
             --text-inverse: #FFFFFF;      /* 反色文字 */
             
             /* 邊框色系 - 柔和邊框 */
-            --border-primary: #D7C4BB;    /* 主邊框 - 淺灰褐（NIPPON） */
-            --border-secondary: #E8E0DB;  /* 次邊框 - 更淺灰褐 */
-            --border-focus: #9E7A7A;      /* 聚焦邊框 - 深灰褐（NIPPON） */
+            --border-primary: #E0E0E0;    /* 主邊框 - 淺灰 */
+            --border-secondary: #F0F0F0;  /* 次邊框 - 更淺灰 */
+            --border-focus: #AEC6CF;      /* 聚焦邊框 - 軟藍 */
             
-            /* 品牌色系 - 現代優雅 */
-            --primary: #A5DEE4;           /* 主色 - 天藍（NIPPON） */
-            --primary-dark: #7BC4CC;      /* 主色深 - 深天藍 */
-            --primary-light: #C8E8EB;     /* 主色淺 - 淺天藍 */
+            /* 品牌色系 - 平靜專業 */
+            --primary: #AEC6CF;           /* 主色 - 軟藍 */
+            --primary-dark: #8FA8B1;      /* 主色深 - 深軟藍 */
+            --primary-light: #C8D6DB;     /* 主色淺 - 淺軟藍 */
             
-            --secondary: #DC9FB4;          /* 次色 - 玫瑰粉（NIPPON） */
-            --secondary-dark: #C87A94;    /* 次色深 - 深玫瑰粉 */
-            --secondary-light: #E8B8C8;    /* 次色淺 - 淺玫瑰粉 */
+            --secondary: #EAE3D2;          /* 次色 - 米色 */
+            --secondary-dark: #D4C4A8;    /* 次色深 - 深米色 */
+            --secondary-light: #F0E8D6;    /* 次色淺 - 淺米色 */
             
-            --accent: #50870F;            /* 強調色 - 自然綠 */
-            --accent-dark: #3A5F0A;       /* 強調色深 - 深自然綠 */
-            --accent-light: #7BAF1A;      /* 強調色淺 - 淺自然綠 */
+            --accent: #6B8E6B;            /* 強調色 - 柔和綠 */
+            --accent-dark: #5A7A5A;       /* 強調色深 - 深柔和綠 */
+            --accent-light: #7BA07B;      /* 強調色淺 - 淺柔和綠 */
             
-            /* 語義色系 - 現代設計 */
-            --success: #50870F;           /* 成功色 - 自然綠 */
-            --success-light: #CBC438;     /* 成功淺色 - 淺黃綠 */
-            --warning: #BF9FA6;           /* 警告色 - 灰玫瑰（室內設計） */
-            --warning-light: #E8B8C8;     /* 警告淺色 - 淺玫瑰 */
-            --danger: #DC9FB4;            /* 危險色 - 玫瑰粉 */
-            --danger-light: #F2D1DB;       /* 危險淺色 - 淺玫瑰粉 */
-            --info: #A5DEE4;              /* 資訊色 - 天藍 */
-            --info-light: #C8E8EB;         /* 資訊淺色 - 淺天藍 */
+            /* 語義色系 - 平靜設計 */
+            --success: #6B8E6B;           /* 成功色 - 柔和綠 */
+            --success-light: #A8C4A8;     /* 成功淺色 - 淺柔和綠 */
+            --warning: #D4A574;           /* 警告色 - 柔和橙 */
+            --warning-light: #E8C4A0;     /* 警告淺色 - 淺柔和橙 */
+            --danger: #C48B8B;            /* 危險色 - 柔和紅 */
+            --danger-light: #D4A5A5;       /* 危險淺色 - 淺柔和紅 */
+            --info: #AEC6CF;              /* 資訊色 - 軟藍 */
+            --info-light: #C8D6DB;         /* 資訊淺色 - 淺軟藍 */
             
-            /* 漸層效果 - 現代優雅 */
+            /* 漸層效果 - 平靜簡約 */
             --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
             --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
             --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
@@ -82,63 +82,181 @@
             --shadow-secondary: 0 4px 16px rgba(220, 159, 180, 0.15);
         }
         
-        [data-theme="dark"] {
-            /* Dark Mode - 科技優雅風格 */
-            /* 靈感來源：工業科技風 + 現代室內設計深色調 */
+        /* Energetic Bright Theme - Light Mode */
+        [data-theme="energetic"] {
+            /* 基於色彩心理學：活力、創意、積極 */
             
-            /* 背景色系 - 深色科技調 */
-            --bg-primary: #1F0737;        /* 主背景 - 深紫藍（科技風） */
-            --bg-secondary: #393C60;       /* 次背景 - 深靛藍（室內設計） */
-            --bg-card: #4E394F;           /* 卡片背景 - 深紫（室內設計） */
-            --bg-overlay: rgba(31, 7, 55, 0.9);
-            --bg-hover: #2A1A3A;          /* 懸停背景 */
+            /* 背景色系 - 明亮活力 */
+            --bg-primary: #FFFFFF;        /* 主背景 - 純白 */
+            --bg-secondary: #FFF8E1;      /* 次背景 - 淺黃 */
+            --bg-card: #FFFFFF;           /* 卡片背景 - 純白 */
+            --bg-overlay: rgba(255, 255, 255, 0.95);
+            --bg-hover: #FFF3C4;          /* 懸停背景 - 淺黃 */
+            
+            /* 文字色系 - 深色調 */
+            --text-primary: #1A1A1A;      /* 主文字 - 深黑 */
+            --text-secondary: #4A4A4A;    /* 次文字 - 中灰 */
+            --text-muted: #6B6B6B;        /* 輔助文字 - 淺灰 */
+            --text-inverse: #FFFFFF;      /* 反色文字 */
+            
+            /* 邊框色系 - 活力邊框 */
+            --border-primary: #FFD54F;    /* 主邊框 - 黃色 */
+            --border-secondary: #FFF3C4;  /* 次邊框 - 淺黃 */
+            --border-focus: #FFB74D;      /* 聚焦邊框 - 橙色 */
+            
+            /* 品牌色系 - 活力創意 */
+            --primary: #FFD54F;           /* 主色 - 黃色 */
+            --primary-dark: #FFC107;      /* 主色深 - 深黃 */
+            --primary-light: #FFF176;     /* 主色淺 - 淺黃 */
+            
+            --secondary: #81C784;          /* 次色 - 綠色 */
+            --secondary-dark: #66BB6A;    /* 次色深 - 深綠 */
+            --secondary-light: #A5D6A7;    /* 次色淺 - 淺綠 */
+            
+            --accent: #FFB74D;            /* 強調色 - 橙色 */
+            --accent-dark: #FF9800;       /* 強調色深 - 深橙 */
+            --accent-light: #FFCC80;      /* 強調色淺 - 淺橙 */
+            
+            /* 語義色系 - 活力設計 */
+            --success: #81C784;           /* 成功色 - 綠色 */
+            --success-light: #A5D6A7;     /* 成功淺色 - 淺綠 */
+            --warning: #FFB74D;           /* 警告色 - 橙色 */
+            --warning-light: #FFCC80;     /* 警告淺色 - 淺橙 */
+            --danger: #E57373;            /* 危險色 - 柔和紅 */
+            --danger-light: #FFAB91;       /* 危險淺色 - 淺紅 */
+            --info: #64B5F6;              /* 資訊色 - 藍色 */
+            --info-light: #90CAF9;         /* 資訊淺色 - 淺藍 */
+            
+            /* 漸層效果 - 活力明亮 */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            --gradient-bg-light: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            
+            /* 陰影系統 - 活力陰影 */
+            --shadow-light: 0 2px 8px rgba(44, 44, 44, 0.08);
+            --shadow-medium: 0 4px 16px rgba(44, 44, 44, 0.12);
+            --shadow-heavy: 0 8px 32px rgba(44, 44, 44, 0.16);
+            --shadow-primary: 0 4px 16px rgba(255, 213, 79, 0.2);
+            --shadow-secondary: 0 4px 16px rgba(129, 199, 132, 0.2);
+        }
+
+        /* Sleek Professional Theme - Dark Mode */
+        [data-theme="sleek"] {
+            /* 基於色彩心理學：專業、可靠、現代 */
+            
+            /* 背景色系 - 專業深色 */
+            --bg-primary: #000000;        /* 主背景 - 純黑 */
+            --bg-secondary: #121212;      /* 次背景 - 深灰 */
+            --bg-card: #1E1E1E;           /* 卡片背景 - 深灰 */
+            --bg-overlay: rgba(0, 0, 0, 0.9);
+            --bg-hover: #2A2A2A;          /* 懸停背景 */
             
             /* 文字色系 - 亮色調 */
-            --text-primary: #F5F5F5;      /* 主文字 - 亮白 */
-            --text-secondary: #D4D4D4;    /* 次文字 - 中白 */
-            --text-muted: #A8A8A8;        /* 輔助文字 - 淺白 */
-            --text-inverse: #1F0737;      /* 反色文字 */
+            --text-primary: #FFFFFF;      /* 主文字 - 純白 */
+            --text-secondary: #E0E0E0;    /* 次文字 - 淺白 */
+            --text-muted: #B0B0B0;        /* 輔助文字 - 中白 */
+            --text-inverse: #000000;      /* 反色文字 */
             
-            /* 邊框色系 - 深色邊框 */
-            --border-primary: #4E394F;    /* 主邊框 - 深紫 */
-            --border-secondary: #5A4A5B;  /* 次邊框 - 中紫 */
-            --border-focus: #52BFEA;      /* 聚焦邊框 - 亮青（科技風） */
+            /* 邊框色系 - 專業邊框 */
+            --border-primary: #424242;    /* 主邊框 - 深灰 */
+            --border-secondary: #616161;  /* 次邊框 - 中灰 */
+            --border-focus: #5C6BC0;      /* 聚焦邊框 - 藍紫 */
             
-            /* 品牌色系 - 科技優雅 */
-            --primary: #52BFEA;           /* 主色 - 亮青（科技風） */
-            --primary-dark: #3E74AE;      /* 主色深 - 深藍（科技風） */
-            --primary-light: #7BC4CC;     /* 主色淺 - 淺青 */
+            /* 品牌色系 - 專業現代 */
+            --primary: #5C6BC0;           /* 主色 - 藍紫 */
+            --primary-dark: #3F51B5;      /* 主色深 - 深藍紫 */
+            --primary-light: #7986CB;     /* 主色淺 - 淺藍紫 */
             
-            --secondary: #9412BC;          /* 次色 - 亮紫（科技風） */
-            --secondary-dark: #7A0F9A;    /* 次色深 - 深紫 */
-            --secondary-light: #B84DD1;    /* 次色淺 - 淺紫 */
+            --secondary: #90A4AE;          /* 次色 - 冷灰 */
+            --secondary-dark: #78909C;    /* 次色深 - 深冷灰 */
+            --secondary-light: #B0BEC5;    /* 次色淺 - 淺冷灰 */
             
-            --accent: #CBC438;            /* 強調色 - 亮黃綠（自然風） */
-            --accent-dark: #A5A02A;       /* 強調色深 - 深黃綠 */
-            --accent-light: #E0D85C;      /* 強調色淺 - 淺黃綠 */
+            --accent: #26A69A;            /* 強調色 - 青綠 */
+            --accent-dark: #00695C;       /* 強調色深 - 深青綠 */
+            --accent-light: #4DB6AC;      /* 強調色淺 - 淺青綠 */
             
-            /* 語義色系 - 科技優雅 */
-            --success: #CBC438;           /* 成功色 - 亮黃綠 */
-            --success-light: #E0D85C;      /* 成功淺色 - 淺黃綠 */
-            --warning: #BF9FA6;           /* 警告色 - 灰玫瑰（室內設計） */
-            --warning-light: #D4B8C0;      /* 警告淺色 - 淺灰玫瑰 */
-            --danger: #9412BC;            /* 危險色 - 亮紫 */
-            --danger-light: #B84DD1;       /* 危險淺色 - 淺紫 */
-            --info: #52BFEA;              /* 資訊色 - 亮青 */
-            --info-light: #7BC4CC;         /* 資訊淺色 - 淺青 */
+            /* 語義色系 - 專業設計 */
+            --success: #26A69A;           /* 成功色 - 青綠 */
+            --success-light: #4DB6AC;     /* 成功淺色 - 淺青綠 */
+            --warning: #FFA726;           /* 警告色 - 橙色 */
+            --warning-light: #FFB74D;     /* 警告淺色 - 淺橙 */
+            --danger: #EF5350;            /* 危險色 - 紅色 */
+            --danger-light: #E57373;       /* 危險淺色 - 淺紅 */
+            --info: #42A5F5;              /* 資訊色 - 藍色 */
+            --info-light: #64B5F6;         /* 資訊淺色 - 淺藍 */
             
-            /* 漸層效果 - 科技優雅 */
+            /* 漸層效果 - 專業時尚 */
             --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
             --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
             --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
             --gradient-bg-dark: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-card) 100%);
             
-            /* 陰影系統 - 科技風格 */
+            /* 陰影系統 - 專業陰影 */
             --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
             --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
             --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --shadow-primary: 0 4px 16px rgba(82, 191, 234, 0.2);
-            --shadow-secondary: 0 4px 16px rgba(148, 18, 188, 0.2);
+            --shadow-primary: 0 4px 16px rgba(92, 107, 192, 0.2);
+            --shadow-secondary: 0 4px 16px rgba(144, 164, 174, 0.2);
+        }
+
+        /* Vibrant Neon Theme - Dark Mode */
+        [data-theme="neon"] {
+            /* 基於色彩心理學：活力、創新、未來感 */
+            
+            /* 背景色系 - 深色霓虹 */
+            --bg-primary: #0D0D0D;        /* 主背景 - 深黑 */
+            --bg-secondary: #1A1A1A;       /* 次背景 - 深灰 */
+            --bg-card: #262626;           /* 卡片背景 - 中灰 */
+            --bg-overlay: rgba(13, 13, 13, 0.9);
+            --bg-hover: #333333;          /* 懸停背景 */
+            
+            /* 文字色系 - 亮色調 */
+            --text-primary: #FFFFFF;      /* 主文字 - 純白 */
+            --text-secondary: #E0E0E0;    /* 次文字 - 淺白 */
+            --text-muted: #B0B0B0;        /* 輔助文字 - 中白 */
+            --text-inverse: #0D0D0D;      /* 反色文字 */
+            
+            /* 邊框色系 - 霓虹邊框 */
+            --border-primary: #424242;    /* 主邊框 - 深灰 */
+            --border-secondary: #616161;  /* 次邊框 - 中灰 */
+            --border-focus: #00BFFF;      /* 聚焦邊框 - 電藍 */
+            
+            /* 品牌色系 - 霓虹活力 */
+            --primary: #00BFFF;           /* 主色 - 電藍 */
+            --primary-dark: #0099CC;      /* 主色深 - 深電藍 */
+            --primary-light: #33CCFF;     /* 主色淺 - 淺電藍 */
+            
+            --secondary: #9C27B0;          /* 次色 - 霓虹紫 */
+            --secondary-dark: #7B1FA2;    /* 次色深 - 深霓虹紫 */
+            --secondary-light: #BA68C8;    /* 次色淺 - 淺霓虹紫 */
+            
+            --accent: #00E676;            /* 強調色 - 亮綠 */
+            --accent-dark: #00C853;       /* 強調色深 - 深亮綠 */
+            --accent-light: #69F0AE;      /* 強調色淺 - 淺亮綠 */
+            
+            /* 語義色系 - 霓虹設計 */
+            --success: #00E676;           /* 成功色 - 亮綠 */
+            --success-light: #69F0AE;     /* 成功淺色 - 淺亮綠 */
+            --warning: #FFD600;           /* 警告色 - 亮黃 */
+            --warning-light: #FFEB3B;     /* 警告淺色 - 淺亮黃 */
+            --danger: #FF1744;            /* 危險色 - 亮紅 */
+            --danger-light: #FF5722;       /* 危險淺色 - 淺亮紅 */
+            --info: #00BFFF;              /* 資訊色 - 電藍 */
+            --info-light: #33CCFF;         /* 資訊淺色 - 淺電藍 */
+            
+            /* 漸層效果 - 霓虹活力 */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            --gradient-bg-dark: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-card) 100%);
+            
+            /* 陰影系統 - 霓虹陰影 */
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-primary: 0 4px 16px rgba(0, 191, 255, 0.2);
+            --shadow-secondary: 0 4px 16px rgba(156, 39, 176, 0.2);
         }
         
         /* 主題選擇器 - 清單式設計 */
@@ -287,7 +405,15 @@
             transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] body {
+        [data-theme="energetic"] body {
+            background: var(--gradient-bg-light);
+        }
+
+        [data-theme="sleek"] body {
+            background: var(--gradient-bg-dark);
+        }
+
+        [data-theme="neon"] body {
             background: var(--gradient-bg-dark);
         }
 
@@ -299,19 +425,33 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(165, 222, 228, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(220, 159, 180, 0.06) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(80, 135, 15, 0.04) 0%, transparent 60%);
+                radial-gradient(circle at 20% 80%, rgba(174, 198, 207, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(234, 227, 210, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(107, 142, 107, 0.04) 0%, transparent 60%);
             pointer-events: none;
             z-index: -1;
             transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] body::before {
+        [data-theme="energetic"] body::before {
             background: 
-                radial-gradient(circle at 20% 80%, rgba(82, 191, 234, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(148, 18, 188, 0.10) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(203, 196, 56, 0.08) 0%, transparent 60%);
+                radial-gradient(circle at 20% 80%, rgba(255, 213, 79, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(129, 199, 132, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(255, 183, 77, 0.04) 0%, transparent 60%);
+        }
+
+        [data-theme="sleek"] body::before {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(92, 107, 192, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(144, 164, 174, 0.10) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(38, 166, 154, 0.08) 0%, transparent 60%);
+        }
+
+        [data-theme="neon"] body::before {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 191, 255, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(156, 39, 176, 0.10) 0%, transparent 60%),
+                radial-gradient(circle at 40% 40%, rgba(0, 230, 118, 0.08) 0%, transparent 60%);
         }
 
         .main-container {
@@ -340,15 +480,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 0%, rgba(165, 222, 228, 0.03) 50%, transparent 100%);
+            background: linear-gradient(45deg, transparent 0%, rgba(174, 198, 207, 0.03) 50%, transparent 100%);
             border-radius: 20px;
             pointer-events: none;
             transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] .left-panel::before, 
-        [data-theme="dark"] .right-panel::before {
-            background: linear-gradient(45deg, transparent 0%, rgba(82, 191, 234, 0.08) 50%, transparent 100%);
+        [data-theme="energetic"] .left-panel::before, 
+        [data-theme="energetic"] .right-panel::before {
+            background: linear-gradient(45deg, transparent 0%, rgba(255, 213, 79, 0.05) 50%, transparent 100%);
+        }
+
+        [data-theme="sleek"] .left-panel::before, 
+        [data-theme="sleek"] .right-panel::before {
+            background: linear-gradient(45deg, transparent 0%, rgba(92, 107, 192, 0.08) 50%, transparent 100%);
+        }
+
+        [data-theme="neon"] .left-panel::before, 
+        [data-theme="neon"] .right-panel::before {
+            background: linear-gradient(45deg, transparent 0%, rgba(0, 191, 255, 0.08) 50%, transparent 100%);
         }
 
         .left-panel {
@@ -373,15 +523,25 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(165, 222, 228, 0.4);
+            text-shadow: 0 0 20px rgba(174, 198, 207, 0.4);
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
             font-weight: bold;
             letter-spacing: 2px;
             transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] .header h1 {
-            text-shadow: 0 0 20px rgba(82, 191, 234, 0.6);
+        [data-theme="energetic"] .header h1 {
+            text-shadow: 0 0 20px rgba(255, 213, 79, 0.6);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        [data-theme="sleek"] .header h1 {
+            text-shadow: 0 0 20px rgba(92, 107, 192, 0.6);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
+        }
+
+        [data-theme="neon"] .header h1 {
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
         }
 
@@ -418,14 +578,26 @@
             border-color: var(--border-focus);
             background: var(--bg-card);
             box-shadow: 
-                0 0 0 3px rgba(165, 222, 228, 0.2),
-                0 0 20px rgba(165, 222, 228, 0.1);
+                0 0 0 3px rgba(174, 198, 207, 0.2),
+                0 0 20px rgba(174, 198, 207, 0.1);
         }
 
-        [data-theme="dark"] .form-group input:focus {
+        [data-theme="energetic"] .form-group input:focus {
             box-shadow: 
-                0 0 0 3px rgba(82, 191, 234, 0.3),
-                0 0 20px rgba(82, 191, 234, 0.2);
+                0 0 0 3px rgba(255, 213, 79, 0.3),
+                0 0 20px rgba(255, 213, 79, 0.2);
+        }
+
+        [data-theme="sleek"] .form-group input:focus {
+            box-shadow: 
+                0 0 0 3px rgba(92, 107, 192, 0.3),
+                0 0 20px rgba(92, 107, 192, 0.2);
+        }
+
+        [data-theme="neon"] .form-group input:focus {
+            box-shadow: 
+                0 0 0 3px rgba(0, 191, 255, 0.3),
+                0 0 20px rgba(0, 191, 255, 0.2);
         }
 
         .form-group input::placeholder {
@@ -479,13 +651,21 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 15px rgba(165, 222, 228, 0.5);
+            text-shadow: 0 0 15px rgba(174, 198, 207, 0.5);
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] .result h2 {
-            text-shadow: 0 0 15px rgba(82, 191, 234, 0.7);
+        [data-theme="energetic"] .result h2 {
+            text-shadow: 0 0 15px rgba(255, 213, 79, 0.7);
+        }
+
+        [data-theme="sleek"] .result h2 {
+            text-shadow: 0 0 15px rgba(92, 107, 192, 0.7);
+        }
+
+        [data-theme="neon"] .result h2 {
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
         }
 
         .result-value {
@@ -495,14 +675,24 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(80, 135, 15, 0.5);
+            text-shadow: 0 0 20px rgba(107, 142, 107, 0.5);
             margin-bottom: 10px;
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
             transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] .result-value {
-            text-shadow: 0 0 20px rgba(203, 196, 56, 0.7);
+        [data-theme="energetic"] .result-value {
+            text-shadow: 0 0 20px rgba(255, 183, 77, 0.7);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+        }
+
+        [data-theme="sleek"] .result-value {
+            text-shadow: 0 0 20px rgba(38, 166, 154, 0.7);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+        }
+
+        [data-theme="neon"] .result-value {
+            text-shadow: 0 0 20px rgba(0, 230, 118, 0.7);
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
         }
 
@@ -719,42 +909,56 @@
         .history-section {
             margin-top: 20px;
             padding: 15px;
-            background: linear-gradient(145deg, rgba(26, 31, 58, 0.6) 0%, rgba(45, 27, 105, 0.4) 100%);
+            background: var(--bg-card);
             border-radius: 10px;
             max-height: 400px;
             overflow-y: auto;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--border-primary);
             backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-medium);
         }
 
         .history-section h3 {
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-size: 1.1em;
             font-weight: bold;
+            text-shadow: 0 0 15px rgba(174, 198, 207, 0.5);
+        }
+
+        [data-theme="energetic"] .history-section h3 {
+            text-shadow: 0 0 15px rgba(255, 213, 79, 0.7);
+        }
+
+        [data-theme="sleek"] .history-section h3 {
+            text-shadow: 0 0 15px rgba(92, 107, 192, 0.7);
+        }
+
+        [data-theme="neon"] .history-section h3 {
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
         }
 
         .history-item {
-            background: linear-gradient(145deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+            background: var(--bg-hover);
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 6px;
             font-size: 0.85em;
-            border-left: 3px solid #32cd32;
+            border-left: 3px solid var(--accent);
             position: relative;
             transition: all 0.3s ease;
             line-height: 1.3;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border: 1px solid var(--border-secondary);
             backdrop-filter: blur(5px);
         }
 
         .history-item:hover {
-            background: linear-gradient(145deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%);
+            background: var(--primary-light);
             transform: translateX(5px);
-            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+            box-shadow: var(--shadow-primary);
         }
 
         .history-item:last-child {
@@ -765,8 +969,8 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background: #ff4757;
-            color: white;
+            background: var(--danger);
+            color: var(--text-inverse);
             border: none;
             border-radius: 50%;
             width: 24px;
@@ -782,7 +986,7 @@
 
         .history-delete-btn:hover {
             opacity: 1;
-            background: #ff3742;
+            background: var(--danger-dark);
             transform: scale(1.1);
         }
 
@@ -891,17 +1095,31 @@
         </button>
         <div class="theme-dropdown" id="themeDropdown">
             <div class="theme-option active" onclick="setTheme('light')">
-                <span class="theme-icon">☀️</span>
+                <span class="theme-icon">🌿</span>
                 <div>
-                    <div class="theme-name">現代優雅</div>
-                    <div class="theme-desc">NIPPON 風格</div>
+                    <div class="theme-name">平靜簡約</div>
+                    <div class="theme-desc">Calm Minimal</div>
                 </div>
             </div>
-            <div class="theme-option" onclick="setTheme('dark')">
-                <span class="theme-icon">🌙</span>
+            <div class="theme-option" onclick="setTheme('energetic')">
+                <span class="theme-icon">⚡</span>
                 <div>
-                    <div class="theme-name">科技優雅</div>
-                    <div class="theme-desc">工業科技風</div>
+                    <div class="theme-name">活力明亮</div>
+                    <div class="theme-desc">Energetic Bright</div>
+                </div>
+            </div>
+            <div class="theme-option" onclick="setTheme('sleek')">
+                <span class="theme-icon">💼</span>
+                <div>
+                    <div class="theme-name">專業時尚</div>
+                    <div class="theme-desc">Sleek Professional</div>
+                </div>
+            </div>
+            <div class="theme-option" onclick="setTheme('neon')">
+                <span class="theme-icon">🌟</span>
+                <div>
+                    <div class="theme-name">霓虹活力</div>
+                    <div class="theme-desc">Vibrant Neon</div>
                 </div>
             </div>
         </div>
@@ -1084,7 +1302,13 @@
             // 更新 meta theme-color
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
             if (metaThemeColor) {
-                metaThemeColor.setAttribute('content', theme === 'dark' ? '#1F0737' : '#A5DEE4');
+                const themeColors = {
+                    'light': '#AEC6CF',
+                    'energetic': '#FFD54F',
+                    'sleek': '#5C6BC0',
+                    'neon': '#00BFFF'
+                };
+                metaThemeColor.setAttribute('content', themeColors[theme] || '#AEC6CF');
             }
         }
 
@@ -1113,7 +1337,13 @@
             // 更新 meta theme-color
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
             if (metaThemeColor) {
-                metaThemeColor.setAttribute('content', savedTheme === 'dark' ? '#1F0737' : '#A5DEE4');
+                const themeColors = {
+                    'light': '#AEC6CF',
+                    'energetic': '#FFD54F',
+                    'sleek': '#5C6BC0',
+                    'neon': '#00BFFF'
+                };
+                metaThemeColor.setAttribute('content', themeColors[savedTheme] || '#AEC6CF');
             }
         }
 
