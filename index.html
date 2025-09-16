@@ -141,24 +141,30 @@
             --shadow-secondary: 0 4px 16px rgba(148, 18, 188, 0.2);
         }
         
-        /* 主題切換按鈕 - 現代優雅設計 */
-        .theme-toggle {
+        /* 主題選擇器 - 清單式設計 */
+        .theme-selector {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
+        }
+
+        .theme-toggle {
             background: var(--gradient-primary);
             border: 2px solid var(--primary);
-            border-radius: 50px;
-            padding: 12px 18px;
+            border-radius: 12px;
+            padding: 8px 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-primary);
             font-weight: bold;
             color: var(--text-inverse);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            font-size: 14px;
+            font-size: 12px;
             backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .theme-toggle:hover {
@@ -169,18 +175,70 @@
         }
 
         .theme-toggle::before {
-            content: "🌙";
-            margin-right: 8px;
+            content: "🎨";
+            font-size: 14px;
+        }
+
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-card);
+            border: 2px solid var(--border-primary);
+            border-radius: 12px;
+            box-shadow: var(--shadow-heavy);
+            backdrop-filter: blur(15px);
+            min-width: 180px;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .theme-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .theme-option:last-child {
+            border-bottom: none;
+        }
+
+        .theme-option:hover {
+            background: var(--bg-hover);
+        }
+
+        .theme-option.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .theme-icon {
             font-size: 16px;
         }
 
-        [data-theme="dark"] .theme-toggle::before {
-            content: "☀️";
+        .theme-name {
+            flex: 1;
         }
 
-        [data-theme="dark"] .theme-toggle {
-            color: var(--text-inverse);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        .theme-desc {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 2px;
         }
     </style>
     
@@ -826,10 +884,28 @@
     </style>
 </head>
 <body>
-    <!-- 主題切換按鈕 -->
-    <button class="theme-toggle" onclick="toggleTheme()" title="切換主題模式">
-        切換主題
-    </button>
+    <!-- 主題選擇器 -->
+    <div class="theme-selector">
+        <button class="theme-toggle" onclick="toggleThemeDropdown()" title="選擇主題">
+            主題
+        </button>
+        <div class="theme-dropdown" id="themeDropdown">
+            <div class="theme-option active" onclick="setTheme('light')">
+                <span class="theme-icon">☀️</span>
+                <div>
+                    <div class="theme-name">現代優雅</div>
+                    <div class="theme-desc">NIPPON 風格</div>
+                </div>
+            </div>
+            <div class="theme-option" onclick="setTheme('dark')">
+                <span class="theme-icon">🌙</span>
+                <div>
+                    <div class="theme-name">科技優雅</div>
+                    <div class="theme-desc">工業科技風</div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div class="main-container">
         <!-- 左側面板：計算表單和快捷設定 -->
@@ -986,30 +1062,58 @@
         }
 
         // 主題切換功能
-        function toggleTheme() {
+        function toggleThemeDropdown() {
+            const dropdown = document.getElementById('themeDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function setTheme(theme) {
             const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
             
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            // 更新選中狀態
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.closest('.theme-option').classList.add('active');
+            
+            // 關閉下拉選單
+            document.getElementById('themeDropdown').classList.remove('show');
             
             // 更新 meta theme-color
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
             if (metaThemeColor) {
-                metaThemeColor.setAttribute('content', newTheme === 'dark' ? '#1a1a1a' : '#ffd700');
+                metaThemeColor.setAttribute('content', theme === 'dark' ? '#1F0737' : '#A5DEE4');
             }
         }
+
+        // 點擊外部關閉下拉選單
+        document.addEventListener('click', function(event) {
+            const themeSelector = document.querySelector('.theme-selector');
+            if (!themeSelector.contains(event.target)) {
+                document.getElementById('themeDropdown').classList.remove('show');
+            }
+        });
 
         // 載入保存的主題
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
             
+            // 更新選中狀態
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            const activeOption = document.querySelector(`[onclick="setTheme('${savedTheme}')"]`);
+            if (activeOption) {
+                activeOption.classList.add('active');
+            }
+            
             // 更新 meta theme-color
             const metaThemeColor = document.querySelector('meta[name="theme-color"]');
             if (metaThemeColor) {
-                metaThemeColor.setAttribute('content', savedTheme === 'dark' ? '#1a1a1a' : '#ffd700');
+                metaThemeColor.setAttribute('content', savedTheme === 'dark' ? '#1F0737' : '#A5DEE4');
             }
         }
 
@@ -1401,3 +1505,4 @@
     </script>
 </body>
 </html>
+
