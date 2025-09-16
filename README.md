@@ -5,15 +5,15 @@
 ## 🚀 快速開始
 
 ### 線上使用
-[![Deploy to GitHub Pages](https://github.com/your-username/exp-calculator/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://your-username.github.io/exp-calculator)
+[![Deploy to GitHub Pages](https://github.com/bruce-yang-422/exp_calculator/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://bruce-yang-422.github.io/exp_calculator)
 
-**立即體驗**：[https://your-username.github.io/exp-calculator](https://your-username.github.io/exp-calculator)
+**立即體驗**：[https://bruce-yang-422.github.io/exp_calculator](https://bruce-yang-422.github.io/exp_calculator)
 
 ### 本地運行
 ```bash
 # 克隆專案
-git clone https://github.com/your-username/exp-calculator.git
-cd exp-calculator
+git clone https://github.com/bruce-yang-422/exp_calculator.git
+cd exp_calculator
 
 # 啟動本地伺服器
 python -m http.server 8000
@@ -158,14 +158,14 @@ python -m http.server 8000
    - Source 選擇 "GitHub Actions"
 3. **推送代碼**：
    ```bash
-   git clone https://github.com/your-username/exp-calculator.git
-   cd exp-calculator
+   git clone https://github.com/bruce-yang-422/exp_calculator.git
+   cd exp_calculator
    # 修改 package.json 中的 repository 和 homepage URL
    git add .
    git commit -m "Initial commit"
    git push origin main
    ```
-4. **自動部署**：GitHub Actions 會自動部署到 `https://your-username.github.io/exp-calculator`
+4. **自動部署**：GitHub Actions 會自動部署到 `https://bruce-yang-422.github.io/exp_calculator`
 
 #### 方法二：手動部署
 1. **啟用 GitHub Pages**：
@@ -173,12 +173,12 @@ python -m http.server 8000
    - 滾動到 "Pages" 部分
    - Source 選擇 "Deploy from a branch"
    - Branch 選擇 "main"
-2. **訪問網站**：`https://your-username.github.io/exp-calculator`
+2. **訪問網站**：`https://bruce-yang-422.github.io/exp_calculator`
 
 #### 自定義域名（可選）
 1. 在專案根目錄創建 `CNAME` 文件
 2. 在文件中輸入您的域名（例如：`your-domain.com`）
-3. 在域名服務商處設置 CNAME 記錄指向 `your-username.github.io`
+3. 在域名服務商處設置 CNAME 記錄指向 `bruce-yang-422.github.io`
 
 ### 其他平台部署
 - **Netlify**：直接拖拽專案資料夾到 Netlify

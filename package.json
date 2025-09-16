@@ -22,9 +22,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/exp-calculator.git"
+    "url": "https://github.com/bruce-yang-422/exp_calculator.git"
   },
-  "homepage": "https://your-username.github.io/exp-calculator",
+  "homepage": "https://bruce-yang-422.github.io/exp_calculator",
   "engines": {
     "node": ">=14.0.0"
   },
