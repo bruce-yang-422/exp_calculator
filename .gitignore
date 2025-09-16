@@ -1,0 +1,25 @@
+# GitHub Pages 部署忽略文件
+# 通常不需要 .gitignore，但為了完整性添加
+
+# 系統文件
+.DS_Store
+Thumbs.db
+
+# 編輯器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 臨時文件
+*.tmp
+*.log
+
+# 如果將來添加 Node.js 依賴
+node_modules/
+package-lock.json
+yarn.lock
+
+# 構建輸出（如果將來需要）
+dist/
+build/

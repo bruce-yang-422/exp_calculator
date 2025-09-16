@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>經驗值計算器</title>
+    <title>經驗值計算器 - 遊戲經驗值與金錢計算工具</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="專業的遊戲經驗值計算器，支援每小時經驗值計算、金錢計算、Excel匯出匯入、快捷設定等功能。適用於各種線上遊戲的掛網效率分析。">
+    <meta name="keywords" content="經驗值計算器,遊戲計算器,掛網計算,經驗值,金錢計算,Excel匯出,遊戲工具">
+    <meta name="author" content="經驗值計算器">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="經驗值計算器 - 遊戲經驗值與金錢計算工具">
+    <meta property="og:description" content="專業的遊戲經驗值計算器，支援每小時經驗值計算、金錢計算、Excel匯出匯入等功能。">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    
+    <!-- Performance Optimization -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#ffd700">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
     <!-- SheetJS 庫用於 Excel 檔案處理 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" 
+            integrity="sha512-r22gChDnGvBylk90+2e/ycr3xr3R9u02r4aK6F2q03Ykk/Q7E2wQ8Qu8vsV8uo1dsT0X/avhL7y4dXJ1Td+fOWA==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+    <!-- 備用 CDN -->
+    <script>
+        // 如果主要 CDN 載入失敗，嘗試備用 CDN
+        window.addEventListener('error', function(e) {
+            if (e.target.src && e.target.src.includes('xlsx')) {
+                console.log('主要 CDN 載入失敗，嘗試備用 CDN...');
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js';
+                script.crossOrigin = 'anonymous';
+                document.head.appendChild(script);
+            }
+        });
+    </script>
     <style>
         * {
             margin: 0;
@@ -15,11 +57,27 @@
 
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1f3a 25%, #2d1b69 75%, #4a1a5c 100%);
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            color: white;
+            color: #f4e4bc;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 69, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .main-container {
@@ -31,12 +89,28 @@
         }
 
         .left-panel, .right-panel {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.8) 0%, rgba(45, 27, 105, 0.6) 100%);
+            backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 215, 0, 0.1),
+                0 0 20px rgba(255, 140, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+        }
+
+        .left-panel::before, .right-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 0%, rgba(255, 215, 0, 0.05) 50%, transparent 100%);
+            border-radius: 20px;
+            pointer-events: none;
         }
 
         .left-panel {
@@ -57,7 +131,14 @@
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
         .header p {
@@ -79,18 +160,26 @@
         .form-group input {
             width: 100%;
             padding: 12px 15px;
-            border: none;
+            border: 2px solid rgba(255, 215, 0, 0.3);
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.9) 0%, rgba(45, 27, 105, 0.7) 100%);
+            color: #f4e4bc;
             font-size: 1.1em;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .form-group input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 1);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            border-color: #ffd700;
+            background: linear-gradient(145deg, rgba(26, 31, 58, 1) 0%, rgba(45, 27, 105, 0.9) 100%);
+            box-shadow: 
+                0 0 0 3px rgba(255, 215, 0, 0.3),
+                0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(244, 228, 188, 0.6);
         }
 
         .time-inputs {
@@ -102,42 +191,64 @@
         .calculate-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            border: none;
+            background: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500);
+            border: 2px solid rgba(255, 215, 0, 0.5);
             border-radius: 10px;
-            color: white;
+            color: #1a1f3a;
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-bottom: 30px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 4px 15px rgba(255, 215, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .calculate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 
+                0 8px 25px rgba(255, 215, 0, 0.5),
+                0 0 30px rgba(255, 140, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(45deg, #ffed4e, #ffa500, #ff6347);
         }
 
         .result {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.9) 0%, rgba(45, 27, 105, 0.7) 100%);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 215, 0, 0.1),
+                0 0 20px rgba(255, 140, 0, 0.1);
+            backdrop-filter: blur(15px);
         }
 
         .result h2 {
             font-size: 1.8em;
             margin-bottom: 15px;
-            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            font-weight: bold;
         }
 
         .result-value {
             font-size: 2.5em;
             font-weight: bold;
-            color: #00ff88;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #00ff88, #32cd32, #90ee90);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
             margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
         }
 
         .result-unit {
@@ -148,15 +259,21 @@
         .shortcuts-section {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.6) 0%, rgba(45, 27, 105, 0.4) 100%);
             border-radius: 10px;
             font-size: 0.9em;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .shortcuts-section h3 {
             margin-bottom: 15px;
-            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.1em;
+            font-weight: bold;
         }
 
         .shortcut-group {
@@ -179,11 +296,16 @@
         .shortcut-input input {
             flex: 1;
             padding: 8px 12px;
-            border: none;
+            border: 1px solid rgba(255, 215, 0, 0.3);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.8) 0%, rgba(45, 27, 105, 0.6) 100%);
+            color: #f4e4bc;
             font-size: 1em;
+            backdrop-filter: blur(10px);
+        }
+
+        .shortcut-input input::placeholder {
+            color: rgba(244, 228, 188, 0.5);
         }
 
         .shortcut-btn {
@@ -197,13 +319,17 @@
         }
 
         .add-btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
+            background: linear-gradient(45deg, #32cd32, #228b22);
+            color: #1a1f3a;
+            border: 1px solid rgba(50, 205, 50, 0.5);
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .add-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 3px 10px rgba(50, 205, 50, 0.4);
+            background: linear-gradient(45deg, #00ff00, #32cd32);
         }
 
         .shortcut-list {
@@ -214,7 +340,7 @@
         }
 
         .shortcut-item {
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 100%);
             padding: 6px 12px;
             border-radius: 15px;
             font-size: 0.9em;
@@ -223,11 +349,14 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(5px);
         }
 
         .shortcut-item:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 140, 0, 0.2) 100%);
             transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
         }
 
         .shortcut-item .delete-btn {
@@ -252,14 +381,20 @@
         .data-management {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.6) 0%, rgba(45, 27, 105, 0.4) 100%);
             border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .data-management h3 {
             margin-bottom: 15px;
-            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.1em;
+            font-weight: bold;
         }
 
         .data-buttons {
@@ -281,65 +416,86 @@
         }
 
         .export-btn {
-            background: linear-gradient(45deg, #2196F3, #1976D2);
-            color: white;
+            background: linear-gradient(45deg, #4169e1, #1e90ff);
+            color: #f4e4bc;
+            border: 1px solid rgba(65, 105, 225, 0.5);
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .export-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(33, 150, 243, 0.4);
+            box-shadow: 0 3px 10px rgba(65, 105, 225, 0.4);
+            background: linear-gradient(45deg, #6495ed, #4169e1);
         }
 
         .import-btn {
-            background: linear-gradient(45deg, #FF9800, #F57C00);
-            color: white;
+            background: linear-gradient(45deg, #ff8c00, #ff6347);
+            color: #f4e4bc;
+            border: 1px solid rgba(255, 140, 0, 0.5);
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .import-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(255, 152, 0, 0.4);
+            box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
+            background: linear-gradient(45deg, #ffa500, #ff8c00);
         }
 
         .clear-btn {
-            background: linear-gradient(45deg, #f44336, #d32f2f);
-            color: white;
+            background: linear-gradient(45deg, #dc143c, #b22222);
+            color: #f4e4bc;
+            border: 1px solid rgba(220, 20, 60, 0.5);
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .clear-btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(244, 67, 54, 0.4);
+            box-shadow: 0 3px 10px rgba(220, 20, 60, 0.4);
+            background: linear-gradient(45deg, #ff1493, #dc143c);
         }
 
         .history-section {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.6) 0%, rgba(45, 27, 105, 0.4) 100%);
             border-radius: 10px;
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .history-section h3 {
             margin-bottom: 15px;
-            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.1em;
+            font-weight: bold;
         }
 
         .history-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 6px;
             font-size: 0.85em;
-            border-left: 3px solid #4CAF50;
+            border-left: 3px solid #32cd32;
             position: relative;
             transition: all 0.3s ease;
             line-height: 1.3;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(5px);
         }
 
         .history-item:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%);
             transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
         }
 
         .history-item:last-child {
@@ -383,50 +539,60 @@
 
         .share-section h3 {
             margin-bottom: 15px;
-            color: #ffd700;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.2em;
+            font-weight: bold;
         }
 
         .share-message {
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, rgba(26, 31, 58, 0.8) 0%, rgba(45, 27, 105, 0.6) 100%);
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 15px;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
             line-height: 1.4;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             white-space: pre-line;
             min-height: 80px;
+            backdrop-filter: blur(10px);
+            color: #f4e4bc;
         }
 
         .copy-btn {
             padding: 10px 20px;
             margin: 5px;
-            border: none;
+            border: 2px solid rgba(50, 205, 50, 0.5);
             border-radius: 8px;
             font-size: 1em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
+            background: linear-gradient(45deg, #32cd32, #228b22);
+            color: #1a1f3a;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .copy-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.4);
+            background: linear-gradient(45deg, #00ff00, #32cd32);
         }
 
         .success-message {
-            background: rgba(76, 175, 80, 0.2);
-            border: 1px solid #4CAF50;
-            color: #4CAF50;
+            background: linear-gradient(145deg, rgba(50, 205, 50, 0.2) 0%, rgba(34, 139, 34, 0.1) 100%);
+            border: 1px solid #32cd32;
+            color: #32cd32;
             padding: 10px;
             border-radius: 5px;
             margin-top: 10px;
             text-align: center;
             display: none;
+            backdrop-filter: blur(5px);
+            font-weight: bold;
         }
 
         @media (max-width: 1000px) {

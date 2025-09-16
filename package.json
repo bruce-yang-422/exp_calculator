@@ -1,0 +1,33 @@
+{
+  "name": "exp-calculator",
+  "version": "1.0.0",
+  "description": "遊戲經驗值計算器 - 支援每小時經驗值計算、金錢計算、Excel匯出匯入等功能",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "經驗值計算器",
+    "遊戲計算器",
+    "掛網計算",
+    "經驗值",
+    "金錢計算",
+    "Excel匯出",
+    "遊戲工具",
+    "static-site",
+    "github-pages"
+  ],
+  "author": "經驗值計算器",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/exp-calculator.git"
+  },
+  "homepage": "https://your-username.github.io/exp-calculator",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
