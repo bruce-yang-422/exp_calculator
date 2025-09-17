@@ -19,49 +19,63 @@
     
     <!-- Performance Optimization -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#00BFFF">
+    <meta name="theme-color" content="#00CFFF">
     
     <!-- CSS 變數定義 -->
     <style>
+        /* 全域規則：移除所有動畫和轉場效果 */
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+        
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
         :root {
-            /* 相似色配色法 - 電藍主題延伸 */
+            /* LOGO 同色系 - 霓虹科技主題 */
             
-            /* 核心色彩 - 相似色系 */
-            --primary: #00BFFF;     /* 電藍 - 主色 */
-            --primary-light: #0099CC; /* 青藍 - 主色延伸 */
-            --primary-dark: #0080B3;  /* 深電藍 */
+            /* 核心色彩 - LOGO 相似色系 */
+            --primary: #00CFFF;     /* 電藍 - 主色 */
+            --primary-light: #00FFBF; /* 青綠 - 主色延伸 */
+            --primary-dark: #0099CC;  /* 深電藍 - 深主色 */
             
-            --secondary: #9C27B0;   /* 霓虹紫 - 次色 */
-            --secondary-light: #7E57C2; /* 藍紫 - 次色延伸 */
-            --secondary-dark: #7B1FA2; /* 深霓虹紫 */
+            --secondary: #9C27FF;   /* 霓虹紫 - 次色 */
+            --secondary-light: #FF3ACD; /* 亮粉紅 - 次色延伸 */
+            --secondary-dark: #7B1FA2; /* 深霓虹紫 - 深次色 */
             
-            --accent: #00E676;      /* 亮綠 - 強調色 */
-            --accent-light: #1DE9B6; /* 青綠 - 強調色延伸 */
-            --accent-dark: #00C853;  /* 深亮綠 */
+            --accent: #00FFBF;      /* 青綠 - 強調色 */
+            --accent-light: #00CFFF; /* 電藍 - 強調色延伸 */
+            --accent-dark: #00E676;  /* 深青綠 - 深強調色 */
             
-            /* 功能色彩 - 相似色調整 */
-            --error: #E57373;       /* 偏粉紫 - 錯誤 */
-            --error-dark: #D32F2F;  /* 深粉紫 */
-            --warning: #FFB74D;      /* 暖橙 - 警告 */
-            --warning-dark: #FF8F00; /* 深暖橙 */
-            --success: var(--accent); /* 成功用亮綠 */
+            /* 功能色彩 - LOGO 同色系調整 */
+            --error: #FF3ACD;       /* 亮粉紅 - 錯誤 */
+            --error-dark: #E91E63;  /* 深粉紅 - 深錯誤 */
+            --warning: #00FFBF;      /* 青綠 - 警告 */
+            --warning-dark: #00E676; /* 深青綠 - 深警告 */
+            --success: var(--accent); /* 成功用青綠 */
             --info: var(--primary);   /* 資訊用電藍 */
             
-            /* 文字顏色 - 高對比度 */
-            --text-main: #F5F5F5;   /* 主文字 - 柔和純白 */
-            --text-sub: #90A4AE;    /* 次文字 - 柔和灰白 */
-            --text-muted: #78909C;  /* 輔助文字 - 中灰白 */
+            /* 文字顏色 - LOGO 同色系層次 */
+            --text-main: #FFFFFF;   /* 一般文字 - 白色 */
+            --text-sub: #A0AEC0;    /* 次標題/小區塊標籤 - 藍灰 */
+            --text-muted: #718096;  /* 輔助文字 - 深藍灰 */
             --text-inverse: #0D0D0D; /* 反色文字 - 深黑 */
+            --text-title: var(--primary); /* 主標題 - 電藍漸層 */
             
-            /* 背景顏色 - 深色系 */
-            --bg-dark: #0D0D0D;     /* 深黑背景 */
-            --bg-secondary: #1A1A1A; /* 深灰藍背景 */
-            --bg-card: rgba(26, 26, 26, 0.85); /* 毛玻璃卡片 */
-            --bg-hover: #2E2E2E;    /* 懸停背景 */
+            /* 背景顏色 - LOGO 同色系 */
+            --bg-dark: #0D0D0D;     /* 深藍黑背景 */
+            --bg-secondary: #1A0033; /* 深紫藍背景 */
+            --bg-card: rgba(20, 22, 28, 0.25); /* 極透明的深色玻璃 */
+            --bg-hover: rgba(0, 207, 255, 0.08); /* 輕量化懸停背景 */
             
             /* 邊框顏色 */
-            --border-primary: #424242;
-            --border-secondary: #616161;
+            --border-primary: rgba(0, 207, 255, 0.25); /* 輕量化淡電藍邊框 */
+            --border-secondary: rgba(156, 39, 255, 0.15); /* 輕量化淡霓虹紫邊框 */
             --border-focus: var(--primary);
             
             /* 漸層效果 - 相似色漸變 */
@@ -71,14 +85,14 @@
             --gradient-danger: linear-gradient(135deg, var(--error), var(--error-dark));
             --gradient-warning: linear-gradient(135deg, var(--warning), var(--warning-dark));
             
-            /* 陰影系統 - 相似色光暈 */
-            --shadow-primary: 0 0 12px rgba(0, 191, 255, 0.4);
-            --shadow-secondary: 0 0 12px rgba(156, 39, 176, 0.4);
-            --shadow-accent: 0 0 12px rgba(0, 230, 118, 0.4);
-            --shadow-danger: 0 0 12px rgba(229, 115, 115, 0.4);
-            --shadow-warning: 0 0 12px rgba(255, 183, 77, 0.4);
-            --shadow-hover: 0 0 20px rgba(0, 230, 118, 0.6);
-            --shadow-card: 0 0 15px rgba(0, 191, 255, 0.3);
+            /* 陰影系統 - 柔和電藍光暈 */
+            --shadow-primary: 0 0 8px rgba(0, 207, 255, 0.2);
+            --shadow-secondary: 0 0 8px rgba(156, 39, 255, 0.15);
+            --shadow-accent: 0 0 8px rgba(0, 255, 191, 0.2);
+            --shadow-danger: 0 0 8px rgba(255, 58, 205, 0.2);
+            --shadow-warning: 0 0 8px rgba(0, 255, 191, 0.2);
+            --shadow-hover: 0 0 8px rgba(0, 255, 191, 0.15);
+            --shadow-card: 0 0 6px rgba(0, 207, 255, 0.12);
             
             /* 兼容性變數 */
             --bg-primary: var(--bg-dark);
@@ -141,57 +155,35 @@
         }
 
         html {
-            background: var(--bg-primary);
             transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
-            background: #0D0D0D; /* fallback 純色背景 */
-            background-image: url('technology_background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
             min-height: 100vh;
             margin: 0;
             padding: 0;
             color: var(--text-main);
             position: relative;
-            transition: all 0.3s ease;
-            will-change: transform, filter;
-            contain: paint;
         }
 
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('technology_background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            filter: blur(12px) saturate(110%) brightness(0.65);
-            pointer-events: none;
-            z-index: -2;
-            will-change: transform, filter;
-            contain: paint;
+            inset: 0;
+            z-index: -3;
+            background: url("./technology_background.jpg") center/cover no-repeat fixed;
+            filter: blur(5px) brightness(0.8) saturate(1.1);
+            will-change: filter;
+            transform: translateZ(0);
         }
 
         body::after {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45);
-            pointer-events: none;
-            z-index: -1;
+            inset: 0;
+            z-index: -2;
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .bg-glow-layer {
@@ -201,11 +193,11 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 191, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(156, 39, 176, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.08) 0%, transparent 60%);
+                radial-gradient(circle at 20% 30%, rgba(0, 207, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(156, 39, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 191, 0.08) 0%, transparent 60%);
             pointer-events: none;
-            z-index: 0;
+            z-index: -1;
             will-change: transform;
             contain: paint;
         }
@@ -213,47 +205,47 @@
         /* 頂部 Hero 區域 */
         .top-hero {
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px 20px;
             background: var(--bg-card);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            box-shadow: 0 0 20px var(--primary);
-            border: 1px solid var(--primary);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-primary);
             margin: 20px auto;
-            width: 80%;
-            max-width: 900px;
+            width: 96%;
+            max-width: 864px;
             position: relative;
             z-index: 10;
         }
 
         .top-hero .site-logo {
-            max-height: 88px;
+            max-height: 64px;
             width: auto;
             border-radius: 12px;
             box-shadow: var(--shadow-primary);
             object-fit: contain;
             display: block;
-            margin: 0 auto 20px;
+            margin: 0 auto 12px;
         }
 
         .top-hero .site-title {
-            font-size: 2.5em;
+            font-size: 1.6em;
             margin: 0;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--primary), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: bold;
-            text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            text-shadow: var(--shadow-primary);
         }
 
         /* 兩欄主區域 */
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            width: 80%;
-            max-width: 900px;
+            gap: 12px;
+            width: 96%;
+            max-width: 864px;
             margin: 0 auto;
             position: relative;
             z-index: 10;
@@ -261,30 +253,14 @@
 
         .col-left, .col-right {
             background: var(--bg-card);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            box-shadow: 0 0 20px var(--primary);
-            border: 1px solid var(--primary);
-            padding: 30px;
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-primary);
+            padding: 22px;
             position: relative;
         }
 
-        /* 右欄底部按鈕列 */
-        .action-bar {
-            position: sticky;
-            bottom: 0;
-            background: var(--bg-card);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
-            box-shadow: 0 0 15px var(--primary);
-            border: 1px solid var(--primary);
-            padding: 20px;
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
 
 
 
@@ -296,21 +272,20 @@
         .logo {
             max-width: 200px;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-radius: 10px;
             box-shadow: var(--shadow-medium);
             transition: all 0.3s ease;
         }
 
         .logo:hover {
-            transform: scale(1.05);
             box-shadow: var(--shadow-heavy);
         }
 
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -322,31 +297,32 @@
         }
 
         .header p {
-            font-size: 1.1em;
+            font-size: 0.94em;
             opacity: 0.9;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 1.1em;
+            margin-bottom: 6px;
+            font-size: 0.8em;
             font-weight: bold;
+            color: var(--text-sub);
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--border-primary);
-            border-radius: 10px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 1.1em;
+            padding: 6px 10px;
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 0.85em;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(6px);
         }
 
         .form-group input:focus {
@@ -364,48 +340,46 @@
         .time-inputs {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         .calculate-btn {
             width: 100%;
-            padding: 15px;
-            background: var(--gradient-primary);
+            padding: 8px;
+            background: linear-gradient(135deg, #00CFFF, #00FFBF);
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             color: var(--text-main);
-            font-size: 1.2em;
+            font-size: 0.9em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow-primary);
+            margin-bottom: 15px;
+            box-shadow: 0 0 12px rgba(0, 207, 255, 0.25);
         }
 
         .calculate-btn:hover {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             box-shadow: var(--shadow-hover);
-            transform: scale(1.05);
-            border: 1px solid var(--accent-light);
+            border: 1px solid var(--primary);
         }
 
         .result {
             background: var(--bg-card);
-            border: 1px solid var(--primary);
+            border: 1px solid var(--border-primary);
             box-shadow: var(--shadow-card);
             color: var(--text-main);
             border-radius: 12px;
-            padding: 16px;
+            padding: 12px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(6px);
             transition: all 0.3s ease;
-            animation: cardFadeIn 0.6s ease-out;
         }
 
         .result h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            background: var(--gradient-primary);
+            font-size: 1.53em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -415,7 +389,7 @@
         }
 
         .result-value {
-            font-size: 2.5em;
+            font-size: 2.13em;
             font-weight: bold;
             color: var(--accent);
             margin-bottom: 10px;
@@ -425,60 +399,56 @@
 
 
         .result-unit {
-            font-size: 1.2em;
+            font-size: 1.02em;
             opacity: 0.9;
         }
 
         .shortcuts-section {
-            margin-top: 20px;
-            padding: 16px;
+            margin-top: 14px;
+            padding: 10px;
             background: var(--bg-card);
-            border: 1px solid var(--primary);
+            border: 1px solid var(--border-primary);
             box-shadow: var(--shadow-card);
             border-radius: 12px;
-            font-size: 0.9em;
-            backdrop-filter: blur(10px);
+            font-size: 0.7em;
+            backdrop-filter: blur(6px);
             transition: all 0.3s ease;
-            animation: cardFadeIn 0.6s ease-out;
         }
 
         .shortcuts-section h3 {
-            margin-bottom: 15px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: var(--text-sub);
+            font-size: 0.8em;
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
         .shortcut-group {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .shortcut-group label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 1em;
+            margin-bottom: 6px;
+            font-size: 0.75em;
             font-weight: bold;
         }
 
         .shortcut-input {
             display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: 6px;
+            margin-bottom: 6px;
         }
 
         .shortcut-input input {
             flex: 1;
-            padding: 8px 12px;
+            padding: 4px 8px;
             border: 1px solid var(--border-primary);
-            border-radius: 8px;
+            border-radius: 6px;
             background: var(--bg-card);
             color: var(--text-primary);
-            font-size: 1em;
-            backdrop-filter: blur(10px);
+            font-size: 0.75em;
+            backdrop-filter: blur(6px);
             transition: all 0.3s ease;
         }
 
@@ -487,17 +457,17 @@
         }
 
         .shortcut-btn {
-            padding: 8px 15px;
+            padding: 4px 8px;
             border: none;
-            border-radius: 8px;
-            font-size: 0.9em;
+            border-radius: 6px;
+            font-size: 0.7em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .add-btn {
-            background: var(--gradient-accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             color: var(--text-inverse);
             border: 1px solid var(--accent);
             font-weight: bold;
@@ -508,7 +478,7 @@
         .add-btn:hover {
             transform: translateY(-1px);
             box-shadow: var(--shadow-secondary);
-            background: var(--gradient-secondary);
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
             border-color: var(--secondary);
         }
 
@@ -534,9 +504,8 @@
         }
 
         .shortcut-item:hover {
-            background: linear-gradient(145deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 140, 0, 0.2) 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+            background: rgba(0, 207, 255, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 207, 255, 0.2);
         }
 
         .shortcut-item .delete-btn {
@@ -559,25 +528,20 @@
         }
 
         .data-management {
-            margin-top: 20px;
-            padding: 16px;
+            margin-top: 14px;
+            padding: 12px;
             background: var(--bg-card);
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 12px var(--primary);
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-card);
             border-radius: 12px;
-            backdrop-filter: blur(10px);
-            animation: cardFadeIn 0.6s ease-out;
+            backdrop-filter: blur(6px);
         }
 
         .data-management h3 {
-            margin-bottom: 15px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: var(--text-sub);
+            font-size: 0.94em;
             font-weight: bold;
-            text-shadow: 0 0 15px rgba(174, 198, 207, 0.5);
         }
 
         [data-theme="energetic"] .data-management h3 {
@@ -594,95 +558,89 @@
 
         .data-buttons {
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .data-btn {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: var(--text-main);
             border: none;
-            border-radius: 8px;
-            padding: 10px 16px;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8em;
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-primary);
             cursor: pointer;
-            flex: 1;
-            min-width: 120px;
-            font-size: 0.9em;
+            min-width: 100px;
         }
 
         .data-btn:hover {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             box-shadow: var(--shadow-hover);
-            transform: scale(1.05);
-            border: 1px solid var(--accent-light);
+            border: 1px solid var(--primary);
         }
 
-        /* 清除資料按鈕樣式 - 使用紫紅色 */
+        /* 清除資料按鈕樣式 - 使用亮粉紅 */
         button.data-btn.clear-btn[onclick="clearAllData()"] {
-            background: var(--gradient-danger) !important;
-            color: var(--text-main) !important;
-            border: 1px solid var(--error-dark) !important;
+            background: linear-gradient(135deg, #FF3ACD, #E91E63) !important;
+            color: #FFFFFF !important;
+            border: 1px solid #E91E63 !important;
             font-weight: bold !important;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-            box-shadow: var(--shadow-danger) !important;
+            box-shadow: 0 0 12px rgba(255, 58, 205, 0.25) !important;
         }
 
         button.data-btn.clear-btn[onclick="clearAllData()"]:hover {
-            background: linear-gradient(135deg, var(--error-dark), var(--error)) !important;
-            border-color: var(--error) !important;
-            transform: scale(1.05) !important;
-            box-shadow: var(--shadow-danger) !important;
+            background: linear-gradient(135deg, #E91E63, #FF3ACD) !important;
+            border-color: #FF3ACD !important;
+            box-shadow: 0 0 8px rgba(255, 58, 205, 0.2) !important;
         }
 
         .data-btn.export-btn {
-            background: var(--gradient-primary) !important;
-            box-shadow: var(--shadow-primary) !important;
+            background: linear-gradient(135deg, #00CFFF, #00FFBF) !important;
+            box-shadow: 0 0 12px rgba(0, 207, 255, 0.25) !important;
         }
 
         .data-btn.export-btn:hover {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light)) !important;
-            box-shadow: var(--shadow-hover) !important;
-            transform: scale(1.05) !important;
-            border: 1px solid var(--accent-light) !important;
+            background: linear-gradient(135deg, #00FFBF, #00CFFF) !important;
+            box-shadow: 0 0 8px rgba(0, 255, 191, 0.2) !important;
+            border: 1px solid #00CFFF !important;
         }
 
         .data-btn.import-btn {
-            background: var(--gradient-secondary) !important;
-            box-shadow: var(--shadow-secondary) !important;
+            background: linear-gradient(135deg, #9C27FF, #FF3ACD) !important;
+            box-shadow: 0 0 12px rgba(156, 39, 255, 0.2) !important;
         }
 
         .data-btn.import-btn:hover {
-            background: linear-gradient(135deg, var(--secondary-light), var(--secondary)) !important;
-            box-shadow: var(--shadow-secondary) !important;
-            transform: scale(1.05) !important;
-            border: 1px solid var(--secondary-light) !important;
+            background: linear-gradient(135deg, #FF3ACD, #9C27FF) !important;
+            box-shadow: 0 0 8px rgba(0, 255, 191, 0.2) !important;
+            border: 1px solid #FF3ACD !important;
         }
 
 
         .history-section {
-            margin-top: 20px;
-            padding: 16px;
+            margin-top: 14px;
+            padding: 12px;
             background: var(--bg-card);
-            border: 1px solid var(--secondary);
-            box-shadow: var(--shadow-secondary);
+            border: 1px solid var(--border-secondary);
+            box-shadow: var(--shadow-card);
             color: var(--text-main);
             border-radius: 12px;
             max-height: 400px;
             overflow-y: auto;
-            backdrop-filter: blur(10px);
-            animation: cardFadeIn 0.6s ease-out;
+            backdrop-filter: blur(6px);
         }
 
         .history-section h3 {
-            margin-bottom: 15px;
-            background: var(--gradient-primary);
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 1.1em;
+            font-size: 0.94em;
             font-weight: bold;
             text-shadow: 0 0 15px rgba(174, 198, 207, 0.5);
         }
@@ -701,10 +659,10 @@
 
         .history-item {
             background: var(--bg-hover);
-            padding: 10px;
+            padding: 8px;
             border-radius: 8px;
             margin-bottom: 6px;
-            font-size: 0.85em;
+            font-size: 0.75em;
             border-left: 3px solid var(--accent);
             position: relative;
             transition: all 0.3s ease;
@@ -714,8 +672,7 @@
         }
 
         .history-item:hover {
-            background: var(--primary-light);
-            transform: translateX(5px);
+            background: rgba(0, 207, 255, 0.1);
             box-shadow: var(--shadow-primary);
         }
 
@@ -725,15 +682,15 @@
 
         .history-delete-btn {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 6px;
+            right: 6px;
             background: var(--danger);
             color: var(--text-inverse);
             border: none;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 14px;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -745,7 +702,6 @@
         .history-delete-btn:hover {
             opacity: 1;
             background: var(--danger-dark);
-            transform: scale(1.1);
         }
 
         .file-input {
@@ -759,7 +715,7 @@
         }
 
         .share-section h3 {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background: linear-gradient(45deg, #ffd700, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -772,7 +728,7 @@
             background: linear-gradient(145deg, rgba(26, 31, 58, 0.8) 0%, rgba(45, 27, 105, 0.6) 100%);
             border-radius: 10px;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
             line-height: 1.4;
@@ -798,8 +754,7 @@
         }
 
         .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.4);
+            box-shadow: 0 3px 8px rgba(50, 205, 50, 0.2);
             background: linear-gradient(45deg, #00ff00, #32cd32);
         }
 
@@ -851,29 +806,19 @@
             }
             
             .top-hero .site-title {
-                font-size: 2.2em;
+                font-size: 1.8em;
             }
             
             .two-col {
                 grid-template-columns: 1fr;
                 width: 90%;
-                gap: 15px;
+                gap: 12px;
             }
             
             .col-left, .col-right {
-                padding: 20px;
+                padding: 15px;
             }
             
-            .action-bar {
-                position: static;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .action-bar .data-btn {
-                width: 100%;
-                max-width: 200px;
-            }
         }
 
         @media (max-width: 600px) {
@@ -923,38 +868,38 @@
         <div class="col-left">
 
             <!-- 計算表單 -->
-            <form id="expForm">
-                <div class="form-group">
-                    <label for="characterName">角色名稱</label>
+        <form id="expForm">
+            <div class="form-group">
+                <label for="characterName">角色名稱</label>
                     <input type="text" id="characterName" placeholder="輸入角色名稱" required>
                 </div>
 
                 <div class="form-group">
                     <label for="location">掛網地點</label>
                     <input type="text" id="location" placeholder="輸入掛網地點">
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="exp">總經驗值</label>
-                    <input type="number" id="exp" placeholder="例如：15887" required>
-                </div>
+            <div class="form-group">
+                <label for="exp">總經驗值</label>
+                <input type="number" id="exp" placeholder="例如：15887" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="money">獲得金錢</label>
-                    <input type="number" id="money" placeholder="例如：268322" required>
-                </div>
+            <div class="form-group">
+                <label for="money">獲得金錢</label>
+                <input type="number" id="money" placeholder="例如：268322" required>
+            </div>
 
-                <div class="form-group">
-                    <label>遊戲時間</label>
-                    <div class="time-inputs">
-                        <input type="number" id="hours" placeholder="時" min="0" max="23" required>
-                        <input type="number" id="minutes" placeholder="分" min="0" max="59" required>
-                        <input type="number" id="seconds" placeholder="秒" min="0" max="59" required>
-                    </div>
+            <div class="form-group">
+                <label>遊戲時間</label>
+                <div class="time-inputs">
+                    <input type="number" id="hours" placeholder="時" min="0" max="23" required>
+                    <input type="number" id="minutes" placeholder="分" min="0" max="59" required>
+                    <input type="number" id="seconds" placeholder="秒" min="0" max="59" required>
                 </div>
+            </div>
 
-                <button type="submit" class="calculate-btn">計算每小時經驗值</button>
-            </form>
+            <button type="submit" class="calculate-btn">計算每小時經驗值</button>
+        </form>
 
             <!-- 計算結果 -->
             <div class="result" id="result" style="display: none;">
@@ -996,15 +941,6 @@
                 </div>
             </div>
 
-            <div class="data-management">
-                <h3>📊 資料管理</h3>
-                <div class="data-buttons">
-                    <button type="button" class="data-btn export-btn" onclick="exportToExcel()">📤 匯出 Excel</button>
-                    <button type="button" class="data-btn import-btn" onclick="document.getElementById('fileInput').click()">📥 匯入 Excel</button>
-                    <button type="button" class="data-btn clear-btn" onclick="clearAllData()" style="background: var(--gradient-danger) !important; color: #FFFFFF !important; border: 1px solid var(--danger-dark) !important; box-shadow: var(--shadow-danger) !important;">🗑️ 清除資料</button>
-                    <button type="button" class="data-btn" onclick="testSheetJS()" style="background: var(--gradient-accent) !important; color: #FFFFFF !important; border: 1px solid var(--accent-dark) !important; box-shadow: var(--shadow-accent) !important;">🔧 測試 Excel 功能</button>
-                </div>
-            </div>
         </div>
 
         <!-- 右欄 -->
@@ -1015,13 +951,17 @@
                 <div id="historyList"></div>
             </div>
 
-            <!-- 底部功能按鈕列 -->
-            <div class="action-bar">
-                <button type="button" class="data-btn export-btn" onclick="exportToExcel()">📤 匯出 Excel</button>
-                <button type="button" class="data-btn import-btn" onclick="document.getElementById('fileInput').click()">📥 匯入 Excel</button>
-                <button type="button" class="data-btn clear-btn" onclick="clearAllData()" style="background: var(--gradient-danger) !important; color: #FFFFFF !important; border: 1px solid var(--danger-dark) !important; box-shadow: var(--shadow-danger) !important;">🗑️ 清除資料</button>
+            <!-- 資料管理 -->
+            <div class="data-management">
+                <h3>📊 資料管理</h3>
+                <div class="data-buttons">
+                    <button type="button" class="data-btn export-btn" onclick="exportToExcel()">📤 匯出 Excel</button>
+                    <button type="button" class="data-btn import-btn" onclick="document.getElementById('fileInput').click()">📥 匯入 Excel</button>
+                    <button type="button" class="data-btn clear-btn" onclick="clearAllData()" style="background: linear-gradient(135deg, #FF3ACD, #E91E63) !important; color: #FFFFFF !important; border: 1px solid #E91E63 !important; box-shadow: 0 0 12px rgba(255, 58, 205, 0.25) !important;">🗑️ 清除資料</button>
             </div>
         </div>
+
+            </div>
     </main>
 
     <script>
@@ -1090,33 +1030,6 @@
             }
         }
 
-        // 測試 SheetJS 功能
-        function testSheetJS() {
-            if (typeof XLSX === 'undefined') {
-                alert('❌ SheetJS 未載入\n\n可能原因：\n1. 網路連線問題\n2. CDN 服務中斷\n3. 瀏覽器阻擋外部腳本\n\n建議：\n1. 檢查網路連線\n2. 重新整理頁面\n3. 檢查瀏覽器控制台錯誤');
-                console.error('SheetJS 測試失敗：XLSX 未定義');
-                return;
-            }
-
-            try {
-                // 創建簡單的測試工作簿
-                const wb = XLSX.utils.book_new();
-                const ws = XLSX.utils.aoa_to_sheet([
-                    ['測試', 'SheetJS 功能'],
-                    ['狀態', '正常'],
-                    ['時間', new Date().toLocaleString()]
-                ]);
-                XLSX.utils.book_append_sheet(wb, ws, '測試');
-                
-                // 嘗試下載測試檔案
-                XLSX.writeFile(wb, 'SheetJS_測試.xlsx');
-                alert('✅ SheetJS 功能正常！\n\n測試檔案已下載，匯出功能應該可以正常使用。');
-                console.log('SheetJS 測試成功');
-            } catch (error) {
-                alert('❌ SheetJS 測試失敗\n\n錯誤：' + error.message + '\n\n請檢查瀏覽器控制台獲取詳細信息');
-                console.error('SheetJS 測試失敗:', error);
-            }
-        }
 
         // 快捷功能初始化
         document.addEventListener('DOMContentLoaded', function() {
