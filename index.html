@@ -19,365 +19,76 @@
     
     <!-- Performance Optimization -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#ffd700">
+    <meta name="theme-color" content="#00BFFF">
     
     <!-- CSS 變數定義 -->
     <style>
         :root {
-            /* Calm Minimal Theme - Light Mode */
-            /* 基於色彩心理學：平靜、專業、簡約 */
+            /* 相似色配色法 - 電藍主題延伸 */
             
-            /* 背景色系 - 純淨簡約 */
-            --bg-primary: #FFFFFF;        /* 主背景 - 純白 */
-            --bg-secondary: #F5F5F5;      /* 次背景 - 淺灰 */
-            --bg-card: #FFFFFF;           /* 卡片背景 - 純白 */
-            --bg-overlay: rgba(255, 255, 255, 0.95);
-            --bg-hover: #F0F0F0;          /* 懸停背景 - 淺灰 */
+            /* 核心色彩 - 相似色系 */
+            --primary: #00BFFF;     /* 電藍 - 主色 */
+            --primary-light: #0099CC; /* 青藍 - 主色延伸 */
+            --primary-dark: #0080B3;  /* 深電藍 */
             
-            /* 文字色系 - 深色調 */
-            --text-primary: #1A1A1A;      /* 主文字 - 深黑 */
-            --text-secondary: #4A4A4A;    /* 次文字 - 中灰 */
-            --text-muted: #6B6B6B;        /* 輔助文字 - 淺灰 */
-            --text-inverse: #FFFFFF;      /* 反色文字 */
+            --secondary: #9C27B0;   /* 霓虹紫 - 次色 */
+            --secondary-light: #7E57C2; /* 藍紫 - 次色延伸 */
+            --secondary-dark: #7B1FA2; /* 深霓虹紫 */
             
-            /* 邊框色系 - 柔和邊框 */
-            --border-primary: #E0E0E0;    /* 主邊框 - 淺灰 */
-            --border-secondary: #F0F0F0;  /* 次邊框 - 更淺灰 */
-            --border-focus: #AEC6CF;      /* 聚焦邊框 - 軟藍 */
+            --accent: #00E676;      /* 亮綠 - 強調色 */
+            --accent-light: #1DE9B6; /* 青綠 - 強調色延伸 */
+            --accent-dark: #00C853;  /* 深亮綠 */
             
-            /* 品牌色系 - 平靜專業 */
-            --primary: #AEC6CF;           /* 主色 - 軟藍 */
-            --primary-dark: #8FA8B1;      /* 主色深 - 深軟藍 */
-            --primary-light: #C8D6DB;     /* 主色淺 - 淺軟藍 */
+            /* 功能色彩 - 相似色調整 */
+            --error: #E57373;       /* 偏粉紫 - 錯誤 */
+            --error-dark: #D32F2F;  /* 深粉紫 */
+            --warning: #FFB74D;      /* 暖橙 - 警告 */
+            --warning-dark: #FF8F00; /* 深暖橙 */
+            --success: var(--accent); /* 成功用亮綠 */
+            --info: var(--primary);   /* 資訊用電藍 */
             
-            --secondary: #EAE3D2;          /* 次色 - 米色 */
-            --secondary-dark: #D4C4A8;    /* 次色深 - 深米色 */
-            --secondary-light: #F0E8D6;    /* 次色淺 - 淺米色 */
+            /* 文字顏色 - 高對比度 */
+            --text-main: #F5F5F5;   /* 主文字 - 柔和純白 */
+            --text-sub: #90A4AE;    /* 次文字 - 柔和灰白 */
+            --text-muted: #78909C;  /* 輔助文字 - 中灰白 */
+            --text-inverse: #0D0D0D; /* 反色文字 - 深黑 */
             
-            --accent: #6B8E6B;            /* 強調色 - 柔和綠 */
-            --accent-dark: #5A7A5A;       /* 強調色深 - 深柔和綠 */
-            --accent-light: #7BA07B;      /* 強調色淺 - 淺柔和綠 */
+            /* 背景顏色 - 深色系 */
+            --bg-dark: #0D0D0D;     /* 深黑背景 */
+            --bg-secondary: #1A1A1A; /* 深灰藍背景 */
+            --bg-card: rgba(26, 26, 26, 0.85); /* 毛玻璃卡片 */
+            --bg-hover: #2E2E2E;    /* 懸停背景 */
             
-            /* 語義色系 - 平靜設計 */
-            --success: #6B8E6B;           /* 成功色 - 柔和綠 */
-            --success-light: #A8C4A8;     /* 成功淺色 - 淺柔和綠 */
-            --warning: #D4A574;           /* 警告色 - 柔和橙 */
-            --warning-light: #E8C4A0;     /* 警告淺色 - 淺柔和橙 */
-            --danger: #B71C1C;            /* 危險色 - 深紅 */
-            --danger-light: #D32F2F;       /* 危險淺色 - 中紅 */
-            --info: #AEC6CF;              /* 資訊色 - 軟藍 */
-            --info-light: #C8D6DB;         /* 資訊淺色 - 淺軟藍 */
+            /* 邊框顏色 */
+            --border-primary: #424242;
+            --border-secondary: #616161;
+            --border-focus: var(--primary);
             
-            /* 漸層效果 - 平靜簡約 */
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            --gradient-bg-light: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            /* 漸層效果 - 相似色漸變 */
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent-light));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-light));
+            --gradient-danger: linear-gradient(135deg, var(--error), var(--error-dark));
+            --gradient-warning: linear-gradient(135deg, var(--warning), var(--warning-dark));
             
-            /* 陰影系統 - 柔和陰影 */
-            --shadow-light: 0 2px 8px rgba(44, 44, 44, 0.06);
-            --shadow-medium: 0 4px 16px rgba(44, 44, 44, 0.08);
-            --shadow-heavy: 0 8px 32px rgba(44, 44, 44, 0.12);
-            --shadow-primary: 0 4px 16px rgba(174, 198, 207, 0.15);
-            --shadow-secondary: 0 4px 16px rgba(234, 227, 210, 0.15);
-            --shadow-danger: 0 4px 16px rgba(183, 28, 28, 0.15);
+            /* 陰影系統 - 相似色光暈 */
+            --shadow-primary: 0 0 12px rgba(0, 191, 255, 0.4);
+            --shadow-secondary: 0 0 12px rgba(156, 39, 176, 0.4);
+            --shadow-accent: 0 0 12px rgba(0, 230, 118, 0.4);
+            --shadow-danger: 0 0 12px rgba(229, 115, 115, 0.4);
+            --shadow-warning: 0 0 12px rgba(255, 183, 77, 0.4);
+            --shadow-hover: 0 0 20px rgba(0, 230, 118, 0.6);
+            --shadow-card: 0 0 15px rgba(0, 191, 255, 0.3);
             
-            /* 危險色漸層 */
-            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
-            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
+            /* 兼容性變數 */
+            --bg-primary: var(--bg-dark);
+            --text-primary: var(--text-main);
+            --text-secondary: var(--text-sub);
+            --danger: var(--error);
+            --danger-dark: var(--error-dark);
         }
         
-        /* Energetic Bright Theme - Light Mode */
-        [data-theme="energetic"] {
-            /* 基於色彩心理學：活力、創意、積極 */
-            
-            /* 背景色系 - 明亮活力 */
-            --bg-primary: #FFFFFF;        /* 主背景 - 純白 */
-            --bg-secondary: #FFF8E1;      /* 次背景 - 淺黃 */
-            --bg-card: #FFFFFF;           /* 卡片背景 - 純白 */
-            --bg-overlay: rgba(255, 255, 255, 0.95);
-            --bg-hover: #FFF3C4;          /* 懸停背景 - 淺黃 */
-            
-            /* 文字色系 - 深色調 */
-            --text-primary: #1A1A1A;      /* 主文字 - 深黑 */
-            --text-secondary: #4A4A4A;    /* 次文字 - 中灰 */
-            --text-muted: #6B6B6B;        /* 輔助文字 - 淺灰 */
-            --text-inverse: #FFFFFF;      /* 反色文字 */
-            
-            /* 邊框色系 - 活力邊框 */
-            --border-primary: #FFD54F;    /* 主邊框 - 黃色 */
-            --border-secondary: #FFF3C4;  /* 次邊框 - 淺黃 */
-            --border-focus: #FFB74D;      /* 聚焦邊框 - 橙色 */
-            
-            /* 品牌色系 - 活力創意 */
-            --primary: #FFD54F;           /* 主色 - 黃色 */
-            --primary-dark: #FFC107;      /* 主色深 - 深黃 */
-            --primary-light: #FFF176;     /* 主色淺 - 淺黃 */
-            
-            --secondary: #81C784;          /* 次色 - 綠色 */
-            --secondary-dark: #66BB6A;    /* 次色深 - 深綠 */
-            --secondary-light: #A5D6A7;    /* 次色淺 - 淺綠 */
-            
-            --accent: #FFB74D;            /* 強調色 - 橙色 */
-            --accent-dark: #FF9800;       /* 強調色深 - 深橙 */
-            --accent-light: #FFCC80;      /* 強調色淺 - 淺橙 */
-            
-            /* 語義色系 - 活力設計 */
-            --success: #81C784;           /* 成功色 - 綠色 */
-            --success-light: #A5D6A7;     /* 成功淺色 - 淺綠 */
-            --warning: #FFB74D;           /* 警告色 - 橙色 */
-            --warning-light: #FFCC80;     /* 警告淺色 - 淺橙 */
-            --danger: #D32F2F;            /* 危險色 - 中紅 */
-            --danger-light: #F44336;       /* 危險淺色 - 亮紅 */
-            --info: #64B5F6;              /* 資訊色 - 藍色 */
-            --info-light: #90CAF9;         /* 資訊淺色 - 淺藍 */
-            
-            /* 漸層效果 - 活力明亮 */
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            --gradient-bg-light: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            
-            /* 陰影系統 - 活力陰影 */
-            --shadow-light: 0 2px 8px rgba(44, 44, 44, 0.08);
-            --shadow-medium: 0 4px 16px rgba(44, 44, 44, 0.12);
-            --shadow-heavy: 0 8px 32px rgba(44, 44, 44, 0.16);
-            --shadow-primary: 0 4px 16px rgba(255, 213, 79, 0.2);
-            --shadow-secondary: 0 4px 16px rgba(129, 199, 132, 0.2);
-            --shadow-danger: 0 4px 16px rgba(211, 47, 47, 0.2);
-            
-            /* 危險色漸層 */
-            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
-            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
-        }
-
-        /* Sleek Professional Theme - Dark Mode */
-        [data-theme="sleek"] {
-            /* 基於色彩心理學：專業、可靠、現代 */
-            
-            /* 背景色系 - 專業深色 */
-            --bg-primary: #000000;        /* 主背景 - 純黑 */
-            --bg-secondary: #121212;      /* 次背景 - 深灰 */
-            --bg-card: #1E1E1E;           /* 卡片背景 - 深灰 */
-            --bg-overlay: rgba(0, 0, 0, 0.9);
-            --bg-hover: #2A2A2A;          /* 懸停背景 */
-            
-            /* 文字色系 - 亮色調 */
-            --text-primary: #FFFFFF;      /* 主文字 - 純白 */
-            --text-secondary: #E0E0E0;    /* 次文字 - 淺白 */
-            --text-muted: #B0B0B0;        /* 輔助文字 - 中白 */
-            --text-inverse: #000000;      /* 反色文字 */
-            
-            /* 邊框色系 - 專業邊框 */
-            --border-primary: #424242;    /* 主邊框 - 深灰 */
-            --border-secondary: #616161;  /* 次邊框 - 中灰 */
-            --border-focus: #5C6BC0;      /* 聚焦邊框 - 藍紫 */
-            
-            /* 品牌色系 - 專業現代 */
-            --primary: #5C6BC0;           /* 主色 - 藍紫 */
-            --primary-dark: #3F51B5;      /* 主色深 - 深藍紫 */
-            --primary-light: #7986CB;     /* 主色淺 - 淺藍紫 */
-            
-            --secondary: #90A4AE;          /* 次色 - 冷灰 */
-            --secondary-dark: #78909C;    /* 次色深 - 深冷灰 */
-            --secondary-light: #B0BEC5;    /* 次色淺 - 淺冷灰 */
-            
-            --accent: #26A69A;            /* 強調色 - 青綠 */
-            --accent-dark: #00695C;       /* 強調色深 - 深青綠 */
-            --accent-light: #4DB6AC;      /* 強調色淺 - 淺青綠 */
-            
-            /* 語義色系 - 專業設計 */
-            --success: #26A69A;           /* 成功色 - 青綠 */
-            --success-light: #4DB6AC;     /* 成功淺色 - 淺青綠 */
-            --warning: #FFA726;           /* 警告色 - 橙色 */
-            --warning-light: #FFB74D;     /* 警告淺色 - 淺橙 */
-            --danger: #EF5350;            /* 危險色 - 紅色 */
-            --danger-light: #E57373;       /* 危險淺色 - 淺紅 */
-            --info: #42A5F5;              /* 資訊色 - 藍色 */
-            --info-light: #64B5F6;         /* 資訊淺色 - 淺藍 */
-            
-            /* 漸層效果 - 專業時尚 */
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            --gradient-bg-dark: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-card) 100%);
-            
-            /* 陰影系統 - 專業陰影 */
-            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --shadow-primary: 0 4px 16px rgba(92, 107, 192, 0.2);
-            --shadow-secondary: 0 4px 16px rgba(144, 164, 174, 0.2);
-            --shadow-danger: 0 4px 16px rgba(239, 83, 80, 0.2);
-            
-            /* 危險色漸層 */
-            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
-            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
-        }
-
-        /* Vibrant Neon Theme - Dark Mode */
-        [data-theme="neon"] {
-            /* 基於色彩心理學：活力、創新、未來感 */
-            
-            /* 背景色系 - 深色霓虹 */
-            --bg-primary: #0D0D0D;        /* 主背景 - 深黑 */
-            --bg-secondary: #1A1A1A;       /* 次背景 - 深灰 */
-            --bg-card: #262626;           /* 卡片背景 - 中灰 */
-            --bg-overlay: rgba(13, 13, 13, 0.9);
-            --bg-hover: #333333;          /* 懸停背景 */
-            
-            /* 文字色系 - 亮色調 */
-            --text-primary: #FFFFFF;      /* 主文字 - 純白 */
-            --text-secondary: #E0E0E0;    /* 次文字 - 淺白 */
-            --text-muted: #B0B0B0;        /* 輔助文字 - 中白 */
-            --text-inverse: #0D0D0D;      /* 反色文字 */
-            
-            /* 邊框色系 - 霓虹邊框 */
-            --border-primary: #424242;    /* 主邊框 - 深灰 */
-            --border-secondary: #616161;  /* 次邊框 - 中灰 */
-            --border-focus: #00BFFF;      /* 聚焦邊框 - 電藍 */
-            
-            /* 品牌色系 - 霓虹活力 */
-            --primary: #00BFFF;           /* 主色 - 電藍 */
-            --primary-dark: #0099CC;      /* 主色深 - 深電藍 */
-            --primary-light: #33CCFF;     /* 主色淺 - 淺電藍 */
-            
-            --secondary: #9C27B0;          /* 次色 - 霓虹紫 */
-            --secondary-dark: #7B1FA2;    /* 次色深 - 深霓虹紫 */
-            --secondary-light: #BA68C8;    /* 次色淺 - 淺霓虹紫 */
-            
-            --accent: #00E676;            /* 強調色 - 亮綠 */
-            --accent-dark: #00C853;       /* 強調色深 - 深亮綠 */
-            --accent-light: #69F0AE;      /* 強調色淺 - 淺亮綠 */
-            
-            /* 語義色系 - 霓虹設計 */
-            --success: #00E676;           /* 成功色 - 亮綠 */
-            --success-light: #69F0AE;     /* 成功淺色 - 淺亮綠 */
-            --warning: #FFD600;           /* 警告色 - 亮黃 */
-            --warning-light: #FFEB3B;     /* 警告淺色 - 淺亮黃 */
-            --danger: #FF1744;            /* 危險色 - 亮紅 */
-            --danger-light: #FF5722;       /* 危險淺色 - 淺亮紅 */
-            --info: #00BFFF;              /* 資訊色 - 電藍 */
-            --info-light: #33CCFF;         /* 資訊淺色 - 淺電藍 */
-            
-            /* 漸層效果 - 霓虹活力 */
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            --gradient-secondary: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
-            --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            --gradient-bg-dark: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-card) 100%);
-            
-            /* 陰影系統 - 霓虹陰影 */
-            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --shadow-primary: 0 4px 16px rgba(0, 191, 255, 0.2);
-            --shadow-secondary: 0 4px 16px rgba(156, 39, 176, 0.2);
-            --shadow-danger: 0 4px 16px rgba(255, 23, 68, 0.2);
-            
-            /* 危險色漸層 */
-            --gradient-danger: linear-gradient(135deg, var(--danger), var(--danger-dark));
-            --gradient-danger-dark: linear-gradient(135deg, var(--danger-dark), var(--danger));
-        }
         
-        /* 主題選擇器 - 清單式設計 */
-        .theme-selector {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .theme-toggle {
-            background: var(--gradient-primary);
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-primary);
-            font-weight: bold;
-            color: var(--text-inverse);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            font-size: 12px;
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-heavy), var(--shadow-primary);
-            background: var(--gradient-secondary);
-            border-color: var(--secondary);
-        }
-
-        .theme-toggle::before {
-            content: "🎨";
-            font-size: 14px;
-        }
-
-        .theme-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--bg-card);
-            border: 2px solid var(--border-primary);
-            border-radius: 12px;
-            box-shadow: var(--shadow-heavy);
-            backdrop-filter: blur(15px);
-            min-width: 180px;
-            margin-top: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .theme-dropdown.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .theme-option {
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid var(--border-secondary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-        }
-
-        .theme-option:last-child {
-            border-bottom: none;
-        }
-
-        .theme-option:hover {
-            background: var(--bg-hover);
-        }
-
-        .theme-option.active {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            font-weight: bold;
-        }
-
-        .theme-icon {
-            font-size: 16px;
-        }
-
-        .theme-name {
-            flex: 1;
-        }
-
-        .theme-desc {
-            font-size: 11px;
-            opacity: 0.7;
-            margin-top: 2px;
-        }
     </style>
     
     <!-- Favicon -->
@@ -436,38 +147,20 @@
 
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
-            background: var(--gradient-bg-light);
+            background: #0D0D0D; /* fallback 純色背景 */
+            background-image: url('technology_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
-            color: var(--text-primary);
+            padding: 0;
+            color: var(--text-main);
             position: relative;
             transition: all 0.3s ease;
-        }
-
-        [data-theme="energetic"] body {
-            background: var(--gradient-bg-light);
-        }
-
-        [data-theme="sleek"] body {
-            background: var(--gradient-bg-dark);
-        }
-
-        [data-theme="neon"] body {
-            background: var(--gradient-bg-dark);
-        }
-
-        /* HTML 背景色適配 */
-        [data-theme="energetic"] html {
-            background: var(--bg-primary);
-        }
-
-        [data-theme="sleek"] html {
-            background: var(--bg-primary);
-        }
-
-        [data-theme="neon"] html {
-            background: var(--bg-primary);
+            will-change: transform, filter;
+            contain: paint;
         }
 
         body::before {
@@ -477,96 +170,141 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(174, 198, 207, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(234, 227, 210, 0.06) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(107, 142, 107, 0.04) 0%, transparent 60%);
+            background-image: url('technology_background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            filter: blur(12px) saturate(110%) brightness(0.65);
+            pointer-events: none;
+            z-index: -2;
+            will-change: transform, filter;
+            contain: paint;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
             pointer-events: none;
             z-index: -1;
-            transition: all 0.3s ease;
         }
 
-        [data-theme="energetic"] body::before {
+        .bg-glow-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 213, 79, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(129, 199, 132, 0.06) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(255, 183, 77, 0.04) 0%, transparent 60%);
+                radial-gradient(circle at 20% 30%, rgba(0, 191, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(156, 39, 176, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            will-change: transform;
+            contain: paint;
         }
 
-        [data-theme="sleek"] body::before {
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(92, 107, 192, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(144, 164, 174, 0.10) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(38, 166, 154, 0.08) 0%, transparent 60%);
-        }
-
-        [data-theme="neon"] body::before {
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 191, 255, 0.12) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(156, 39, 176, 0.10) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(0, 230, 118, 0.08) 0%, transparent 60%);
-        }
-
-        .main-container {
-            display: flex;
-            gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: calc(100vh - 40px);
-        }
-
-        .left-panel, .right-panel {
+        /* 頂部 Hero 區域 */
+        .top-hero {
+            text-align: center;
+            padding: 40px 20px;
             background: var(--bg-card);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--shadow-heavy);
-            border: 2px solid var(--border-primary);
+            box-shadow: 0 0 20px var(--primary);
+            border: 1px solid var(--primary);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 900px;
             position: relative;
-            transition: all 0.3s ease;
+            z-index: 10;
         }
 
-        .left-panel::before, .right-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 0%, rgba(174, 198, 207, 0.03) 50%, transparent 100%);
+        .top-hero .site-logo {
+            max-height: 88px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-primary);
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .top-hero .site-title {
+            font-size: 2.5em;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+        }
+
+        /* 兩欄主區域 */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .col-left, .col-right {
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
             border-radius: 20px;
-            pointer-events: none;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--primary);
+            border: 1px solid var(--primary);
+            padding: 30px;
+            position: relative;
         }
 
-        [data-theme="energetic"] .left-panel::before, 
-        [data-theme="energetic"] .right-panel::before {
-            background: linear-gradient(45deg, transparent 0%, rgba(255, 213, 79, 0.05) 50%, transparent 100%);
+        /* 右欄底部按鈕列 */
+        .action-bar {
+            position: sticky;
+            bottom: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--primary);
+            border: 1px solid var(--primary);
+            padding: 20px;
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        [data-theme="sleek"] .left-panel::before, 
-        [data-theme="sleek"] .right-panel::before {
-            background: linear-gradient(45deg, transparent 0%, rgba(92, 107, 192, 0.08) 50%, transparent 100%);
-        }
 
-        [data-theme="neon"] .left-panel::before, 
-        [data-theme="neon"] .right-panel::before {
-            background: linear-gradient(45deg, transparent 0%, rgba(0, 191, 255, 0.08) 50%, transparent 100%);
-        }
-
-        .left-panel {
-            flex: 1;
-            min-width: 400px;
-        }
-
-        .right-panel {
-            flex: 1;
-            min-width: 400px;
-        }
 
         .header {
             text-align: center;
             margin-bottom: 30px;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-heavy);
         }
 
         .header h1 {
@@ -576,26 +314,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 20px rgba(174, 198, 207, 0.4);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
             font-weight: bold;
             letter-spacing: 2px;
             transition: all 0.3s ease;
-        }
-
-        [data-theme="energetic"] .header h1 {
-            text-shadow: 0 0 20px rgba(255, 213, 79, 0.6);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-        }
-
-        [data-theme="sleek"] .header h1 {
-            text-shadow: 0 0 20px rgba(92, 107, 192, 0.6);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
-        }
-
-        [data-theme="neon"] .header h1 {
-            text-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
         }
 
         .header p {
@@ -628,29 +351,10 @@
 
         .form-group input:focus {
             outline: none;
-            border-color: var(--border-focus);
+            border-color: var(--primary);
             background: var(--bg-card);
-            box-shadow: 
-                0 0 0 3px rgba(174, 198, 207, 0.2),
-                0 0 20px rgba(174, 198, 207, 0.1);
-        }
-
-        [data-theme="energetic"] .form-group input:focus {
-            box-shadow: 
-                0 0 0 3px rgba(255, 213, 79, 0.3),
-                0 0 20px rgba(255, 213, 79, 0.2);
-        }
-
-        [data-theme="sleek"] .form-group input:focus {
-            box-shadow: 
-                0 0 0 3px rgba(92, 107, 192, 0.3),
-                0 0 20px rgba(92, 107, 192, 0.2);
-        }
-
-        [data-theme="neon"] .form-group input:focus {
-            box-shadow: 
-                0 0 0 3px rgba(0, 191, 255, 0.3),
-                0 0 20px rgba(0, 191, 255, 0.2);
+            box-shadow: var(--shadow-primary);
+            color: var(--text-main);
         }
 
         .form-group input::placeholder {
@@ -667,34 +371,35 @@
             width: 100%;
             padding: 15px;
             background: var(--gradient-primary);
-            border: 2px solid var(--primary);
-            border-radius: 10px;
-            color: var(--text-inverse);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-main);
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-bottom: 30px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
             box-shadow: var(--shadow-primary);
         }
 
         .calculate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-heavy), var(--shadow-primary);
-            background: var(--gradient-secondary);
-            border-color: var(--secondary);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            box-shadow: var(--shadow-hover);
+            transform: scale(1.05);
+            border: 1px solid var(--accent-light);
         }
 
         .result {
             background: var(--bg-card);
-            border-radius: 15px;
-            padding: 25px;
+            border: 1px solid var(--primary);
+            box-shadow: var(--shadow-card);
+            color: var(--text-main);
+            border-radius: 12px;
+            padding: 16px;
             text-align: center;
-            border: 2px solid var(--border-primary);
-            box-shadow: var(--shadow-heavy);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            animation: cardFadeIn 0.6s ease-out;
         }
 
         .result h2 {
@@ -704,50 +409,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 15px rgba(174, 198, 207, 0.5);
+            text-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
             font-weight: bold;
             transition: all 0.3s ease;
-        }
-
-        [data-theme="energetic"] .result h2 {
-            text-shadow: 0 0 15px rgba(255, 213, 79, 0.7);
-        }
-
-        [data-theme="sleek"] .result h2 {
-            text-shadow: 0 0 15px rgba(92, 107, 192, 0.7);
-        }
-
-        [data-theme="neon"] .result h2 {
-            text-shadow: 0 0 15px rgba(0, 191, 255, 0.7);
         }
 
         .result-value {
             font-size: 2.5em;
             font-weight: bold;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(107, 142, 107, 0.5);
+            color: var(--accent);
             margin-bottom: 10px;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            text-shadow: var(--shadow-accent);
             transition: all 0.3s ease;
         }
 
-        [data-theme="energetic"] .result-value {
-            text-shadow: 0 0 20px rgba(255, 183, 77, 0.7);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
-        }
-
-        [data-theme="sleek"] .result-value {
-            text-shadow: 0 0 20px rgba(38, 166, 154, 0.7);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
-        }
-
-        [data-theme="neon"] .result-value {
-            text-shadow: 0 0 20px rgba(0, 230, 118, 0.7);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
-        }
 
         .result-unit {
             font-size: 1.2em;
@@ -756,18 +431,20 @@
 
         .shortcuts-section {
             margin-top: 20px;
-            padding: 15px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
+            padding: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--primary);
+            box-shadow: var(--shadow-card);
+            border-radius: 12px;
             font-size: 0.9em;
-            border: 1px solid var(--border-secondary);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            animation: cardFadeIn 0.6s ease-out;
         }
 
         .shortcuts-section h3 {
             margin-bottom: 15px;
-            background: var(--gradient-gold);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -883,12 +560,13 @@
 
         .data-management {
             margin-top: 20px;
-            padding: 15px;
+            padding: 16px;
             background: var(--bg-card);
-            border-radius: 10px;
-            border: 1px solid var(--border-primary);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 12px var(--primary);
+            border-radius: 12px;
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-medium);
+            animation: cardFadeIn 0.6s ease-out;
         }
 
         .data-management h3 {
@@ -921,72 +599,81 @@
         }
 
         .data-btn {
-            padding: 10px 15px;
+            background: var(--gradient-primary);
+            color: var(--text-main);
             border: none;
             border-radius: 8px;
-            font-size: 0.9em;
+            padding: 10px 16px;
             font-weight: bold;
-            cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow-primary);
+            cursor: pointer;
             flex: 1;
             min-width: 120px;
+            font-size: 0.9em;
         }
 
-        .export-btn {
-            background: var(--gradient-primary);
-            color: var(--text-inverse);
-            border: 1px solid var(--primary);
-            font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        .data-btn:hover {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            box-shadow: var(--shadow-hover);
+            transform: scale(1.05);
+            border: 1px solid var(--accent-light);
         }
 
-        .export-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-primary);
-            background: var(--gradient-secondary);
-            border-color: var(--secondary);
+        /* 清除資料按鈕樣式 - 使用紫紅色 */
+        button.data-btn.clear-btn[onclick="clearAllData()"] {
+            background: var(--gradient-danger) !important;
+            color: var(--text-main) !important;
+            border: 1px solid var(--error-dark) !important;
+            font-weight: bold !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+            box-shadow: var(--shadow-danger) !important;
         }
 
-        .import-btn {
-            background: var(--gradient-accent);
-            color: var(--text-inverse);
-            border: 1px solid var(--accent);
-            font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        button.data-btn.clear-btn[onclick="clearAllData()"]:hover {
+            background: linear-gradient(135deg, var(--error-dark), var(--error)) !important;
+            border-color: var(--error) !important;
+            transform: scale(1.05) !important;
+            box-shadow: var(--shadow-danger) !important;
         }
 
-        .import-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-secondary);
-            background: var(--gradient-secondary);
-            border-color: var(--secondary);
+        .data-btn.export-btn {
+            background: var(--gradient-primary) !important;
+            box-shadow: var(--shadow-primary) !important;
         }
 
-        .clear-btn {
-            background: var(--danger);
-            color: var(--text-inverse);
-            border: 1px solid var(--danger-dark);
-            font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        .data-btn.export-btn:hover {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light)) !important;
+            box-shadow: var(--shadow-hover) !important;
+            transform: scale(1.05) !important;
+            border: 1px solid var(--accent-light) !important;
         }
 
-        .clear-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-danger);
-            background: var(--danger-dark);
-            border-color: var(--danger);
+        .data-btn.import-btn {
+            background: var(--gradient-secondary) !important;
+            box-shadow: var(--shadow-secondary) !important;
         }
+
+        .data-btn.import-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-light), var(--secondary)) !important;
+            box-shadow: var(--shadow-secondary) !important;
+            transform: scale(1.05) !important;
+            border: 1px solid var(--secondary-light) !important;
+        }
+
 
         .history-section {
             margin-top: 20px;
-            padding: 15px;
+            padding: 16px;
             background: var(--bg-card);
-            border-radius: 10px;
+            border: 1px solid var(--secondary);
+            box-shadow: var(--shadow-secondary);
+            color: var(--text-main);
+            border-radius: 12px;
             max-height: 400px;
             overflow-y: auto;
-            border: 1px solid var(--border-primary);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-medium);
+            animation: cardFadeIn 0.6s ease-out;
         }
 
         .history-section h3 {
@@ -1129,114 +816,164 @@
             font-weight: bold;
         }
 
-        @media (max-width: 1000px) {
-            .main-container {
-                flex-direction: column;
+        /* 響應式背景調整 */
+        @media (max-width: 600px) {
+            body::before {
+                filter: blur(8px) saturate(110%) brightness(0.75);
+                background-attachment: scroll; /* 避免行動裝置抖動 */
+            }
+        }
+
+        @media (min-width: 1440px) {
+            body::before {
+                filter: blur(14px) saturate(110%) brightness(0.65);
+            }
+        }
+
+        /* 減少動畫偏好設定 */
+        @media (prefers-reduced-motion: reduce) {
+            body, body::before, body::after, .bg-glow-layer {
+                transition: none;
+                animation: none;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .logo {
+                max-height: 48px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .top-hero {
+                width: 90%;
+                padding: 30px 15px;
             }
             
-            .left-panel, .right-panel {
-                min-width: auto;
+            .top-hero .site-title {
+                font-size: 2.2em;
+            }
+            
+            .two-col {
+                grid-template-columns: 1fr;
+                width: 90%;
+                gap: 15px;
+            }
+            
+            .col-left, .col-right {
+                padding: 20px;
+            }
+            
+            .action-bar {
+                position: static;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-bar .data-btn {
+                width: 100%;
+                max-width: 200px;
             }
         }
 
         @media (max-width: 600px) {
-            body {
-                padding: 10px;
+            .top-hero .site-logo {
+                max-height: 64px;
             }
             
-            .left-panel, .right-panel {
-                padding: 20px;
+            .top-hero {
+                width: 95%;
+                padding: 20px 10px;
+            }
+            
+            .top-hero .site-title {
+                font-size: 1.8em;
+            }
+            
+            .two-col {
+                width: 95%;
+            }
+            
+            .col-left, .col-right {
+                padding: 15px;
             }
             
             .time-inputs {
                 grid-template-columns: 1fr;
             }
-            
-            .header h1 {
-                font-size: 2em;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- 主題選擇器 -->
-    <div class="theme-selector">
-        <button class="theme-toggle" onclick="toggleThemeDropdown()" title="選擇主題">
-            主題
-        </button>
-        <div class="theme-dropdown" id="themeDropdown">
-            <div class="theme-option active" onclick="setTheme('light')">
-                <span class="theme-icon">🌿</span>
-                <div>
-                    <div class="theme-name">平靜簡約</div>
-                    <div class="theme-desc">Calm Minimal</div>
-                </div>
-            </div>
-            <div class="theme-option" onclick="setTheme('energetic')">
-                <span class="theme-icon">⚡</span>
-                <div>
-                    <div class="theme-name">活力明亮</div>
-                    <div class="theme-desc">Energetic Bright</div>
-                </div>
-            </div>
-            <div class="theme-option" onclick="setTheme('sleek')">
-                <span class="theme-icon">💼</span>
-                <div>
-                    <div class="theme-name">專業時尚</div>
-                    <div class="theme-desc">Sleek Professional</div>
-                </div>
-            </div>
-            <div class="theme-option" onclick="setTheme('neon')">
-                <span class="theme-icon">🌟</span>
-                <div>
-                    <div class="theme-name">霓虹活力</div>
-                    <div class="theme-desc">Vibrant Neon</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- 背景光暈層 -->
+    <div class="bg-glow-layer"></div>
     
-    <div class="main-container">
-        <!-- 左側面板：計算表單和快捷設定 -->
-        <div class="left-panel">
-        <div class="header">
-            <h1>🎮 經驗值計算器</h1>
-            <p>計算每小時獲得的經驗值</p>
-        </div>
+    <!-- 隱藏的檔案輸入 -->
+    <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;" onchange="importFromExcel(event)">
 
-        <form id="expForm">
-            <div class="form-group">
-                <label for="characterName">角色名稱</label>
+    <!-- 頂部 Hero 區域 -->
+    <header class="top-hero">
+        <img src="exp_calculator_logo.png" alt="EXP Calculator Logo" class="site-logo">
+        <h1 class="site-title">經驗值計算器</h1>
+    </header>
+
+    <!-- 兩欄主區域 -->
+    <main class="two-col">
+        <!-- 左欄 -->
+        <div class="col-left">
+
+            <!-- 計算表單 -->
+            <form id="expForm">
+                <div class="form-group">
+                    <label for="characterName">角色名稱</label>
                     <input type="text" id="characterName" placeholder="輸入角色名稱" required>
                 </div>
 
                 <div class="form-group">
                     <label for="location">掛網地點</label>
                     <input type="text" id="location" placeholder="輸入掛網地點">
-            </div>
+                </div>
 
-            <div class="form-group">
-                <label for="exp">總經驗值</label>
-                <input type="number" id="exp" placeholder="例如：15887" required>
-            </div>
+                <div class="form-group">
+                    <label for="exp">總經驗值</label>
+                    <input type="number" id="exp" placeholder="例如：15887" required>
+                </div>
 
-            <div class="form-group">
-                <label for="money">獲得金錢</label>
-                <input type="number" id="money" placeholder="例如：268322" required>
-            </div>
+                <div class="form-group">
+                    <label for="money">獲得金錢</label>
+                    <input type="number" id="money" placeholder="例如：268322" required>
+                </div>
 
-            <div class="form-group">
-                <label>遊戲時間</label>
-                <div class="time-inputs">
-                    <input type="number" id="hours" placeholder="時" min="0" max="23" required>
-                    <input type="number" id="minutes" placeholder="分" min="0" max="59" required>
-                    <input type="number" id="seconds" placeholder="秒" min="0" max="59" required>
+                <div class="form-group">
+                    <label>遊戲時間</label>
+                    <div class="time-inputs">
+                        <input type="number" id="hours" placeholder="時" min="0" max="23" required>
+                        <input type="number" id="minutes" placeholder="分" min="0" max="59" required>
+                        <input type="number" id="seconds" placeholder="秒" min="0" max="59" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="calculate-btn">計算每小時經驗值</button>
+            </form>
+
+            <!-- 計算結果 -->
+            <div class="result" id="result" style="display: none;">
+                <h2>計算結果</h2>
+                <div class="result-value" id="resultValue">0</div>
+                <div class="result-unit">經驗值/小時</div>
+                
+                <div class="result-value" id="moneyPerHour" style="margin-top: 20px;">0</div>
+                <div class="result-unit">金錢/小時</div>
+                
+                <div class="share-section">
+                    <h3>📋 複製結果</h3>
+                    <div class="share-message" id="shareMessage"></div>
+                    <button type="button" class="copy-btn" id="copyBtn">📋 複製到剪貼簿</button>
+                    <div class="success-message" id="successMessage">✅ 已複製到剪貼簿！</div>
                 </div>
             </div>
 
-            <button type="submit" class="calculate-btn">計算每小時經驗值</button>
-        </form>
-
+            <!-- 快捷設定 -->
             <div class="shortcuts-section">
                 <h3>⚡ 快捷設定</h3>
                 
@@ -1264,37 +1001,28 @@
                 <div class="data-buttons">
                     <button type="button" class="data-btn export-btn" onclick="exportToExcel()">📤 匯出 Excel</button>
                     <button type="button" class="data-btn import-btn" onclick="document.getElementById('fileInput').click()">📥 匯入 Excel</button>
-                    <button type="button" class="data-btn clear-btn" onclick="clearAllData()">🗑️ 清除資料</button>
-                    <button type="button" class="data-btn" onclick="testSheetJS()" style="background: var(--gradient-secondary); color: var(--text-inverse);">🔧 測試 Excel 功能</button>
+                    <button type="button" class="data-btn clear-btn" onclick="clearAllData()" style="background: var(--gradient-danger) !important; color: #FFFFFF !important; border: 1px solid var(--danger-dark) !important; box-shadow: var(--shadow-danger) !important;">🗑️ 清除資料</button>
+                    <button type="button" class="data-btn" onclick="testSheetJS()" style="background: var(--gradient-accent) !important; color: #FFFFFF !important; border: 1px solid var(--accent-dark) !important; box-shadow: var(--shadow-accent) !important;">🔧 測試 Excel 功能</button>
                 </div>
-                <input type="file" id="fileInput" class="file-input" accept=".xlsx,.xls" onchange="importFromExcel(event)">
             </div>
         </div>
 
-        <!-- 右側面板：計算結果和歷史記錄 -->
-        <div class="right-panel">
-        <div class="result" id="result" style="display: none;">
-            <h2>計算結果</h2>
-            <div class="result-value" id="resultValue">0</div>
-            <div class="result-unit">經驗值/小時</div>
-            
-            <div class="result-value" id="moneyPerHour" style="margin-top: 20px;">0</div>
-            <div class="result-unit">金錢/小時</div>
-            
-            <div class="share-section">
-                    <h3>📋 複製結果</h3>
-                <div class="share-message" id="shareMessage"></div>
-                    <button type="button" class="copy-btn" id="copyBtn">📋 複製到剪貼簿</button>
-                <div class="success-message" id="successMessage">✅ 已複製到剪貼簿！</div>
-            </div>
-        </div>
-
+        <!-- 右欄 -->
+        <div class="col-right">
+            <!-- 歷史紀錄 -->
             <div class="history-section" id="historySection" style="display: none;">
                 <h3>📈 計算歷史 (最近15筆)</h3>
                 <div id="historyList"></div>
             </div>
+
+            <!-- 底部功能按鈕列 -->
+            <div class="action-bar">
+                <button type="button" class="data-btn export-btn" onclick="exportToExcel()">📤 匯出 Excel</button>
+                <button type="button" class="data-btn import-btn" onclick="document.getElementById('fileInput').click()">📥 匯入 Excel</button>
+                <button type="button" class="data-btn clear-btn" onclick="clearAllData()" style="background: var(--gradient-danger) !important; color: #FFFFFF !important; border: 1px solid var(--danger-dark) !important; box-shadow: var(--shadow-danger) !important;">🗑️ 清除資料</button>
+            </div>
         </div>
-    </div>
+    </main>
 
     <script>
         document.getElementById('expForm').addEventListener('submit', function(e) {
@@ -1351,83 +1079,6 @@
             document.getElementById('shareMessage').textContent = message;
         }
 
-        // 主題切換功能
-        function toggleThemeDropdown() {
-            const dropdown = document.getElementById('themeDropdown');
-            dropdown.classList.toggle('show');
-        }
-
-        function setTheme(theme) {
-            const body = document.body;
-            const html = document.documentElement;
-            
-            // 設置主題屬性
-            body.setAttribute('data-theme', theme);
-            html.setAttribute('data-theme', theme);
-            
-            localStorage.setItem('theme', theme);
-            
-            // 更新選中狀態
-            document.querySelectorAll('.theme-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            event.target.closest('.theme-option').classList.add('active');
-            
-            // 關閉下拉選單
-            document.getElementById('themeDropdown').classList.remove('show');
-            
-            // 更新 meta theme-color
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor) {
-                const themeColors = {
-                    'light': '#AEC6CF',
-                    'energetic': '#FFD54F',
-                    'sleek': '#5C6BC0',
-                    'neon': '#00BFFF'
-                };
-                metaThemeColor.setAttribute('content', themeColors[theme] || '#AEC6CF');
-            }
-        }
-
-        // 點擊外部關閉下拉選單
-        document.addEventListener('click', function(event) {
-            const themeSelector = document.querySelector('.theme-selector');
-            if (!themeSelector.contains(event.target)) {
-                document.getElementById('themeDropdown').classList.remove('show');
-            }
-        });
-
-        // 載入保存的主題
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const body = document.body;
-            const html = document.documentElement;
-            
-            // 設置主題屬性
-            body.setAttribute('data-theme', savedTheme);
-            html.setAttribute('data-theme', savedTheme);
-            
-            // 更新選中狀態
-            document.querySelectorAll('.theme-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            const activeOption = document.querySelector(`[onclick="setTheme('${savedTheme}')"]`);
-            if (activeOption) {
-                activeOption.classList.add('active');
-            }
-            
-            // 更新 meta theme-color
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor) {
-                const themeColors = {
-                    'light': '#AEC6CF',
-                    'energetic': '#FFD54F',
-                    'sleek': '#5C6BC0',
-                    'neon': '#00BFFF'
-                };
-                metaThemeColor.setAttribute('content', themeColors[savedTheme] || '#AEC6CF');
-            }
-        }
 
         // 檢查 SheetJS 載入狀態
         function checkSheetJSStatus() {
@@ -1469,7 +1120,6 @@
 
         // 快捷功能初始化
         document.addEventListener('DOMContentLoaded', function() {
-            loadTheme();
             loadShortcuts();
             checkSheetJSStatus();
         });
@@ -1867,6 +1517,7 @@
                 successMsg.style.display = 'none';
             }, 3000);
         }
+
     </script>
 </body>
 </html>
